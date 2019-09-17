@@ -51,18 +51,18 @@
   };
 </script>
 
-  <meta name="description" content="了解ES71、指数运算符（幂）**1console.log(2**3); //8  2、数组includes()1234let arr = [&apos;3&apos;, 3, &apos;abc&apos;];console.log(arr.includes(3)); //trueconsole.log(arr.includes(&apos;3&apos;)); //trueconsole.log(arr.includes(&apos;b&apos;)); //false">
+  <meta name="description" content="了解ES71、指数运算符（幂）**1console.log(2**3); //8  2、数组includes()12345let arr = [&apos;3&apos;, 3, &apos;abc&apos;, NaN];console.log(arr.includes(3)); //trueconsole.log(arr.includes(&apos;3&apos;)); //trueconsole.log(arr.includes(&apos;b&apos;)); //">
 <meta name="keywords" content="caicaijun007,IT Man,react,vue,antd,php">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习ES7">
 <meta property="og:url" content="http://yoursite.com/2019/09/16/ES7/index.html">
 <meta property="og:site_name" content="菜菜君">
-<meta property="og:description" content="了解ES71、指数运算符（幂）**1console.log(2**3); //8  2、数组includes()1234let arr = [&apos;3&apos;, 3, &apos;abc&apos;];console.log(arr.includes(3)); //trueconsole.log(arr.includes(&apos;3&apos;)); //trueconsole.log(arr.includes(&apos;b&apos;)); //false">
+<meta property="og:description" content="了解ES71、指数运算符（幂）**1console.log(2**3); //8  2、数组includes()12345let arr = [&apos;3&apos;, 3, &apos;abc&apos;, NaN];console.log(arr.includes(3)); //trueconsole.log(arr.includes(&apos;3&apos;)); //trueconsole.log(arr.includes(&apos;b&apos;)); //">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-16T06:52:49.721Z">
+<meta property="og:updated_time" content="2019-09-17T04:38:51.935Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习ES7">
-<meta name="twitter:description" content="了解ES71、指数运算符（幂）**1console.log(2**3); //8  2、数组includes()1234let arr = [&apos;3&apos;, 3, &apos;abc&apos;];console.log(arr.includes(3)); //trueconsole.log(arr.includes(&apos;3&apos;)); //trueconsole.log(arr.includes(&apos;b&apos;)); //false">
+<meta name="twitter:description" content="了解ES71、指数运算符（幂）**1console.log(2**3); //8  2、数组includes()12345let arr = [&apos;3&apos;, 3, &apos;abc&apos;, NaN];console.log(arr.includes(3)); //trueconsole.log(arr.includes(&apos;3&apos;)); //trueconsole.log(arr.includes(&apos;b&apos;)); //">
   <link rel="canonical" href="http://yoursite.com/2019/09/16/ES7/">
 
 
@@ -222,11 +222,19 @@
                 
               
 
-              <time title="创建时间：2019-09-16 14:35:13 / 修改时间：14:52:49" itemprop="dateCreated datePublished" datetime="2019-09-16T14:35:13+08:00">2019-09-16</time>
+              <time title="创建时间：2019-09-16 14:35:13" itemprop="dateCreated datePublished" datetime="2019-09-16T14:35:13+08:00">2019-09-16</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-17 12:38:51" itemprop="dateModified" datetime="2019-09-17T12:38:51+08:00">2019-09-17</time>
+              </span>
             
           
 
@@ -243,9 +251,11 @@
       
         <h2 id="了解ES7"><a href="#了解ES7" class="headerlink" title="了解ES7"></a>了解ES7</h2><h3 id="1、指数运算符（幂）"><a href="#1、指数运算符（幂）" class="headerlink" title="1、指数运算符（幂）**"></a>1、指数运算符（幂）**</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">2</span>**<span class="number">3</span>); <span class="comment">//8</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="2、数组includes"><a href="#2、数组includes" class="headerlink" title="2、数组includes()"></a>2、数组includes()</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'3'</span>, <span class="number">3</span>, <span class="string">'abc'</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr.includes(<span class="number">3</span>)); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.includes(<span class="string">'3'</span>)); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.includes(<span class="string">'b'</span>)); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<h3 id="2、数组includes"><a href="#2、数组includes" class="headerlink" title="2、数组includes()"></a>2、数组includes()</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'3'</span>, <span class="number">3</span>, <span class="string">'abc'</span>, <span class="literal">NaN</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr.includes(<span class="number">3</span>)); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.includes(<span class="string">'3'</span>)); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.includes(<span class="string">'b'</span>)); <span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.includes(<span class="literal">NaN</span>)); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="3、async函数"><a href="#3、async函数" class="headerlink" title="3、async函数"></a>3、async函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">t</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> setTimeout(resolve, t));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'开始'</span>);</span><br><span class="line">	<span class="keyword">await</span> test(<span class="number">3000</span>);</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'结束'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、字符串扩展"><a href="#4、字符串扩展" class="headerlink" title="4、字符串扩展"></a>4、字符串扩展</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 前补白</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'3'</span>.padStart(<span class="number">2</span>, <span class="string">'0'</span>));</span><br><span class="line"><span class="comment">// 后补白</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'3:'</span>.padEnd(<span class="number">4</span>, <span class="string">'00'</span>));</span><br><span class="line"><span class="comment">//标签模板</span></span><br><span class="line"><span class="keyword">let</span> pn = &#123;</span><br><span class="line">	name: <span class="string">'cc'</span>,</span><br><span class="line">	say: <span class="string">'hello'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">a, b, c</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> c+b+a</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(test<span class="string">`<span class="subst">$&#123;pn.say&#125;</span>!<span class="subst">$&#123;pn.name&#125;</span>,123`</span>);</span><br><span class="line"><span class="comment">//模板字符串不转译</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`abc\n123`</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>.raw<span class="string">`abc\n123`</span>);</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -322,7 +332,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#了解ES7"><span class="nav-number">1.</span> <span class="nav-text">了解ES7</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、指数运算符（幂）"><span class="nav-number">1.1.</span> <span class="nav-text">1、指数运算符（幂）**</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、数组includes"><span class="nav-number">1.2.</span> <span class="nav-text">2、数组includes()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、async函数"><span class="nav-number">1.3.</span> <span class="nav-text">3、async函数</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#了解ES7"><span class="nav-number">1.</span> <span class="nav-text">了解ES7</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、指数运算符（幂）"><span class="nav-number">1.1.</span> <span class="nav-text">1、指数运算符（幂）**</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、数组includes"><span class="nav-number">1.2.</span> <span class="nav-text">2、数组includes()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、async函数"><span class="nav-number">1.3.</span> <span class="nav-text">3、async函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、字符串扩展"><span class="nav-number">1.4.</span> <span class="nav-text">4、字符串扩展</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
