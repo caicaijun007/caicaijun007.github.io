@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="后台管理1、使用create-react-app脚手架创建manager-hook项目1# create-react-app manager-hook  2、使用npm包管理工具，安装antd1# npm i antd --save-dev  3、配置antd组件的样式 安装babel-plugin-import按需加载组件代码和样式的 babel 插件 1# npm i babel-plugin">
+<meta name="keywords" content="caicaijun007,IT Man,react,vue,antd,php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习React16.8Hook新特性，重构ManagerSystem项目">
+<meta property="og:url" content="http://yoursite.com/2019/09/21/Manager/index.html">
+<meta property="og:site_name" content="菜菜君">
+<meta property="og:description" content="后台管理1、使用create-react-app脚手架创建manager-hook项目1# create-react-app manager-hook  2、使用npm包管理工具，安装antd1# npm i antd --save-dev  3、配置antd组件的样式 安装babel-plugin-import按需加载组件代码和样式的 babel 插件 1# npm i babel-plugin">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/caicaijun007/xiaocaicai07.github.io/blob/master/1568869009929.jpg">
+<meta property="og:image" content="https://github.com/caicaijun007/xiaocaicai07.github.io/blob/master/1568869009930.jpg">
+<meta property="og:image" content="https://github.com/caicaijun007/xiaocaicai07.github.io/blob/master/1568869009931.jpg">
+<meta property="og:image" content="https://github.com/caicaijun007/xiaocaicai07.github.io/blob/master/manager_hook.gif">
+<meta property="og:updated_time" content="2019-09-21T06:04:57.131Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习React16.8Hook新特性，重构ManagerSystem项目">
+<meta name="twitter:description" content="后台管理1、使用create-react-app脚手架创建manager-hook项目1# create-react-app manager-hook  2、使用npm包管理工具，安装antd1# npm i antd --save-dev  3、配置antd组件的样式 安装babel-plugin-import按需加载组件代码和样式的 babel 插件 1# npm i babel-plugin">
+<meta name="twitter:image" content="https://github.com/caicaijun007/xiaocaicai07.github.io/blob/master/1568869009929.jpg">
+  <link rel="canonical" href="http://yoursite.com/2019/09/21/Manager/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>学习React16.8Hook新特性，重构ManagerSystem项目 | 菜菜君</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">菜菜君</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Too late to explain. I'm an IT guy? All right!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/21/Manager/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="菜菜君">
+      <meta itemprop="description" content="Learn once, write anywhere">
+      <meta itemprop="image" content="/images/caicaijun.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜菜君">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">学习React16.8Hook新特性，重构ManagerSystem项目
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-21 13:58:47 / 修改时间：14:04:57" itemprop="dateCreated datePublished" datetime="2019-09-21T13:58:47+08:00">2019-09-21</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="后台管理"><a href="#后台管理" class="headerlink" title="后台管理"></a>后台管理</h2><h3 id="1、使用create-react-app脚手架创建manager-hook项目"><a href="#1、使用create-react-app脚手架创建manager-hook项目" class="headerlink" title="1、使用create-react-app脚手架创建manager-hook项目"></a>1、使用create-react-app脚手架创建manager-hook项目</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># create-react-app manager-hook</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、使用npm包管理工具，安装antd"><a href="#2、使用npm包管理工具，安装antd" class="headerlink" title="2、使用npm包管理工具，安装antd"></a>2、使用npm包管理工具，安装antd</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i antd --save-dev</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、配置antd组件的样式"><a href="#3、配置antd组件的样式" class="headerlink" title="3、配置antd组件的样式"></a>3、配置antd组件的样式</h3><ul>
+<li><p>安装babel-plugin-import按需加载组件代码和样式的 babel 插件</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i babel-plugin-import</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用npm run eject命令将所有配置暴漏出来</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm run eject</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改webpack.config.js配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'import'</span>, &#123;</span><br><span class="line">  libraryName: <span class="string">'antd'</span>,</span><br><span class="line">  style: <span class="string">'css'</span></span><br><span class="line">&#125;],</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><img src="https://github.com/caicaijun007/xiaocaicai07.github.io/blob/master/1568869009929.jpg" alt="1568869009929"></p>
+<h3 id="4、安装css预处理"><a href="#4、安装css预处理" class="headerlink" title="4、安装css预处理"></a>4、安装css预处理</h3><ul>
+<li><p>安装less、less-loader</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i less less-loader --save-dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改webpack.config.js配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> lessRegex = <span class="regexp">/\.less$/</span>;</span><br><span class="line"><span class="keyword">const</span> lessModuleRegex = <span class="regexp">/\.module\.less$/</span>;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    test: lessRegex,</span><br><span class="line">    exclude: lessModuleRegex,</span><br><span class="line">    use: getStyleLoaders(</span><br><span class="line">    &#123;</span><br><span class="line">        importLoaders: <span class="number">3</span>,</span><br><span class="line">        sourceMap: isEnvProduction &amp;&amp; shouldUseSourceMap,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'less-loader'</span></span><br><span class="line">    ),</span><br><span class="line">	sideEffects: <span class="literal">true</span>,</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    test: lessModuleRegex,</span><br><span class="line">    use: getStyleLoaders(</span><br><span class="line">    &#123;</span><br><span class="line">        importLoaders: <span class="number">3</span>,</span><br><span class="line">        sourceMap: isEnvProduction &amp;&amp; shouldUseSourceMap,</span><br><span class="line">        modules: <span class="literal">true</span>,</span><br><span class="line">        getLocalIdent: getCSSModuleLocalIdent,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'less-loader'</span></span><br><span class="line">    ),</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><img src="https://github.com/caicaijun007/xiaocaicai07.github.io/blob/master/1568869009930.jpg" alt="1568869009930"><br><img src="https://github.com/caicaijun007/xiaocaicai07.github.io/blob/master/1568869009931.jpg" alt="1568869009931"></p>
+<h3 id="5、目录结构"><a href="#5、目录结构" class="headerlink" title="5、目录结构"></a>5、目录结构</h3><p>开发源代码在src目录下进行：</p>
+<ul>
+<li>components              基础组件、公共组件<ul>
+<li>BaseLayout         基本页</li>
+<li>Content               内容</li>
+<li>Footer                  底部</li>
+<li>Header                头部</li>
+<li>MenuSider         菜单栏</li>
+<li>Login                   登录页</li>
+<li>Register              注册页</li>
+</ul>
+</li>
+<li>configs                       配置文件</li>
+<li>pages                         路由组件</li>
+<li>utils                            公共方法</li>
+</ul>
+<h3 id="6、基本页"><a href="#6、基本页" class="headerlink" title="6、基本页"></a>6、基本页</h3><ul>
+<li>使用useState等同于state、setState</li>
+</ul>
+<h3 id="7、菜单栏"><a href="#7、菜单栏" class="headerlink" title="7、菜单栏"></a>7、菜单栏</h3><ul>
+<li>在configs配置目录新建路由配置文件</li>
+<li>菜单配置文件递归</li>
+<li>路由跳转<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i react-router-dom --save-dev</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="8、权限设置"><a href="#8、权限设置" class="headerlink" title="8、权限设置"></a>8、权限设置</h3><ul>
+<li><p>安装axios，封装ajax异步请求接口</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i axios --save-dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>角色权限涉及到封装的、抽离的组件</p>
+<ul>
+<li>查询组件</li>
+<li>table组件</li>
+<li>分页组件</li>
+<li>创建角色模态框组件</li>
+<li>设置角色权限模态框组件</li>
+</ul>
+</li>
+<li><p>用户权限涉及到封装的、抽离的组件</p>
+<ul>
+<li>查询组件</li>
+<li>table组件</li>
+<li>分页组件</li>
+<li>创建用户模态框组件</li>
+<li>设置用户权限模态框组件</li>
+</ul>
+</li>
+</ul>
+<h3 id="问题总结："><a href="#问题总结：" class="headerlink" title="问题总结："></a>问题总结：</h3><ul>
+<li><p>useEffect调用ajax异步请求角色列表，需要清除的effect（副作用）</p>
+<ul>
+<li>条件判断</li>
+<li>参数限制</li>
+<li>方法调用<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//条件判断：</span></span><br><span class="line"><span class="keyword">let</span> [dataSource, setDataSource] = useState([]);</span><br><span class="line">useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (dataSource.length === <span class="number">0</span>) &#123;<span class="comment">//根据自己业务逻辑加条件判断</span></span><br><span class="line">    	request();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//参数限制</span></span><br><span class="line"><span class="keyword">let</span> [roleList, setRoleList] = useState([]);</span><br><span class="line">useEffect(<span class="function"><span class="params">()</span> =&gt;</span> getRoleList(), []); </span><br><span class="line"><span class="comment">//或</span></span><br><span class="line">useEffect(<span class="function"><span class="params">()</span> =&gt;</span> getRoleList(), [roleList]);</span><br><span class="line"><span class="comment">//方法调用</span></span><br><span class="line">useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	request();</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="comment">//清理逻辑</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>获取子组件form表单数据</p>
+<ul>
+<li>之前使用wrappedComponentRef获取不到子组件的属性与方法，</li>
+<li>使用useRef、forwardRef、useImperativeHandle获取得到子组件暴露的属性与方法，但是console会报红色警告，大概意思是你应该使用wrappedComponentRef，不应该使用useRef（what? 我刚从“wrappedComponentRef”那过来。。。）</li>
+<li>使用wrappedComponentRef、forwardRef、useImperativeHandle就可以了<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子组件</span></span><br><span class="line"><span class="keyword">import</span> React, &#123; forwardRef, useImperativeHandle &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="comment">//...省略代码</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">RoleForm</span>(<span class="params">props, ref</span>) </span>&#123;</span><br><span class="line">	useImperativeHandle(ref, () =&gt; &#123;</span><br><span class="line">        <span class="comment">//暴露子组件的参数与方法</span></span><br><span class="line">        <span class="keyword">return</span> props.form;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">//...省略代码</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Form.create()(forwardRef(RoleForm));</span><br><span class="line"><span class="comment">//父组件</span></span><br><span class="line"><span class="comment">//引用子组件时使用wrappedComponentRef获取子组件暴露的属性或方法</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="9、登录页其、注册页"><a href="#9、登录页其、注册页" class="headerlink" title="9、登录页其、注册页"></a>9、登录页其、注册页</h3><ul>
+<li><p>安装md5，登录注册传给后端密码需要加密，后端再加密再验证</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i md5 --save-dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装百度echarts插件</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i echarts echarts-<span class="keyword">for</span>-react --save-dev</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="问题总结：-1"><a href="#问题总结：-1" class="headerlink" title="问题总结："></a>问题总结：</h3><ul>
+<li>未登录进行路由跳转（hash路由地址跳转问题）<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">自定义校验路由(除了登陆、注册以外)：判断是否登录，登录就渲染对应组件，否则跳转至登录</span><br><span class="line">&lt;Route path=&#123;path&#125; render=&#123;() =&gt; isLogin ? &lt;AuthComponent /&gt; : &lt;Redirect to='/login' /&gt;&#125; /&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="10、其它功能页"><a href="#10、其它功能页" class="headerlink" title="10、其它功能页"></a>10、其它功能页</h3><ul>
+<li>使用createContext、 useReducer、useContext实现redux的状态共享机制<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//关于redux相关不详细描述，直接贴代码；</span></span><br><span class="line"><span class="comment">//actionCreater.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; ADD_MESSAGE_OPTION, DELETE_MESSAGE_OPTION &#125; <span class="keyword">from</span> <span class="string">'./actionType'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">addMessageOption</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        type: ADD_MESSAGE_OPTION,</span><br><span class="line">        message</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">deleteMessageOption</span>(<span class="params">index</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        type: DELETE_MESSAGE_OPTION,</span><br><span class="line">        index</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//actionType.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> ADD_MESSAGE_OPTION = <span class="string">'add_message_option'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> DELETE_MESSAGE_OPTION = <span class="string">'delete_message_option'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//reducer.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; ADD_MESSAGE_OPTION, DELETE_MESSAGE_OPTION &#125; <span class="keyword">from</span> <span class="string">'./actionType'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> defaultState = localStorage.getItem(<span class="string">'_itemlist'</span>) ? <span class="built_in">JSON</span>.parse(localStorage.getItem(<span class="string">'_itemlist'</span>)) : [<span class="string">'学习react'</span>, <span class="string">'hook新特性'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params">state = defaultState, action</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> newState = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(state));</span><br><span class="line">    <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">        <span class="keyword">case</span> ADD_MESSAGE_OPTION:</span><br><span class="line">            newState.push(action.message);</span><br><span class="line">            <span class="keyword">return</span> [...newState];</span><br><span class="line">        <span class="keyword">case</span> DELETE_MESSAGE_OPTION:</span><br><span class="line">            newState.splice(action.index, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">return</span> [...newState];</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> state;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//下面具体实现</span></span><br><span class="line"><span class="comment">//根组件 todoList.js</span></span><br><span class="line"><span class="keyword">import</span> &#123;createContext, useReducer&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> Reducer, &#123; defaultState &#125; <span class="keyword">from</span> <span class="string">'../../store/reducer'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; addMessageOption, deleteMessageOption &#125; <span class="keyword">from</span> <span class="string">'../../store/actionCreater'</span>;</span><br><span class="line"><span class="keyword">import</span> ReduxPage <span class="keyword">from</span> <span class="string">'./redux'</span>; <span class="comment">//引入‘同目录下’的子组件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//导出上下文</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> Message = createContext(&#123;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用useReducer</span></span><br><span class="line"><span class="keyword">const</span> [state, dispatch] = useReducer(Reducer, defaultState);</span><br><span class="line"></span><br><span class="line"><span class="comment">//引用上下文，传递state、dispatch</span></span><br><span class="line">&lt;Message.Provider value=&#123;&#123; state, dispatch &#125;&#125;&gt;</span><br><span class="line">	...</span><br><span class="line">	&lt;ReduxPage /&gt;</span><br><span class="line">&lt;<span class="regexp">/Message.Provider&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/子组件 redux.js</span></span><br><span class="line"><span class="regexp">import &#123; useContext &#125; from 'react';</span></span><br><span class="line"><span class="regexp">import &#123; Message &#125; from './</span>todoList<span class="string">'; //导入上下文</span></span><br><span class="line"><span class="string">import &#123; addMessageOption &#125; from '</span>../../store/actionCreater<span class="string">';</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//引用根组件的上下文</span></span><br><span class="line"><span class="string">const &#123; state, dispatch &#125; = useContext(Message);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//修改根组件的内容</span></span><br><span class="line"><span class="string">dispatch(addMessageOption('</span>默认信息<span class="string">'));</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//共享根组件的state</span></span><br><span class="line"><span class="string">console.log(state);</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="问题总结：-2"><a href="#问题总结：-2" class="headerlink" title="问题总结："></a>问题总结：</h3><ul>
+<li>使用useReducer时，注意子组件是要嵌套到根组件里面，否则实现不了状态共享，你可以尝试下</li>
+</ul>
+<h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><p><img src="https://github.com/caicaijun007/xiaocaicai07.github.io/blob/master/manager_hook.gif" alt="manager_hook"></p>
+<h3 id="项目链接"><a href="#项目链接" class="headerlink" title="项目链接"></a>项目链接</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># https://github.com/caicaijun007/manager-hook</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/16/React/" rel="next" title="学习React">
+                  <i class="fa fa-chevron-left"></i> 学习React
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#后台管理"><span class="nav-number">1.</span> <span class="nav-text">后台管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、使用create-react-app脚手架创建manager-hook项目"><span class="nav-number">1.1.</span> <span class="nav-text">1、使用create-react-app脚手架创建manager-hook项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、使用npm包管理工具，安装antd"><span class="nav-number">1.2.</span> <span class="nav-text">2、使用npm包管理工具，安装antd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、配置antd组件的样式"><span class="nav-number">1.3.</span> <span class="nav-text">3、配置antd组件的样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、安装css预处理"><span class="nav-number">1.4.</span> <span class="nav-text">4、安装css预处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、目录结构"><span class="nav-number">1.5.</span> <span class="nav-text">5、目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、基本页"><span class="nav-number">1.6.</span> <span class="nav-text">6、基本页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7、菜单栏"><span class="nav-number">1.7.</span> <span class="nav-text">7、菜单栏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8、权限设置"><span class="nav-number">1.8.</span> <span class="nav-text">8、权限设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题总结："><span class="nav-number">1.9.</span> <span class="nav-text">问题总结：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9、登录页其、注册页"><span class="nav-number">1.10.</span> <span class="nav-text">9、登录页其、注册页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题总结：-1"><span class="nav-number">1.11.</span> <span class="nav-text">问题总结：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10、其它功能页"><span class="nav-number">1.12.</span> <span class="nav-text">10、其它功能页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题总结：-2"><span class="nav-number">1.13.</span> <span class="nav-text">问题总结：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果展示"><span class="nav-number">1.14.</span> <span class="nav-text">效果展示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目链接"><span class="nav-number">1.15.</span> <span class="nav-text">项目链接</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/caicaijun.png"
+      alt="菜菜君">
+  <p class="site-author-name" itemprop="name">菜菜君</p>
+  <div class="site-description" itemprop="description">Learn once, write anywhere</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">菜菜君</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
