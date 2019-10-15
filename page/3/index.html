@@ -127,7 +127,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-        <p class="site-subtitle">人脑记忆有限-->记录下来-->就像查字典一样!</p>
+        <p class="site-subtitle">日积月累</p>
       
   </div>
 
@@ -214,7 +214,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/21/Manager/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/14/ES5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="菜菜君">
@@ -228,7 +228,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/09/21/Manager/" class="post-title-link" itemprop="url">学习React16.8Hook新特性，重构ManagerSystem项目</a>
+            <a href="/2019/09/14/ES5/" class="post-title-link" itemprop="url">学习ES5</a>
           
         </h1>
 
@@ -243,7 +243,7 @@
                 
               
 
-              <time title="创建时间：2019-09-21 13:58:47" itemprop="dateCreated datePublished" datetime="2019-09-21T13:58:47+08:00">2019-09-21</time>
+              <time title="创建时间：2019-09-14 21:23:59" itemprop="dateCreated datePublished" datetime="2019-09-14T21:23:59+08:00">2019-09-14</time>
             </span>
           
             
@@ -254,7 +254,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-15 00:31:58" itemprop="dateModified" datetime="2019-10-15T00:31:58+08:00">2019-10-15</time>
+                <time title="修改时间：2019-09-23 11:59:56" itemprop="dateModified" datetime="2019-09-23T11:59:56+08:00">2019-09-23</time>
               </span>
             
           
@@ -283,126 +283,50 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="后台管理"><a href="#后台管理" class="headerlink" title="后台管理"></a>后台管理</h2><h3 id="1、使用create-react-app脚手架创建manager-hook项目"><a href="#1、使用create-react-app脚手架创建manager-hook项目" class="headerlink" title="1、使用create-react-app脚手架创建manager-hook项目"></a>1、使用create-react-app脚手架创建manager-hook项目</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># create-react-app manager-hook</span><br></pre></td></tr></table></figure>
-
-<h3 id="2、使用npm包管理工具，安装antd"><a href="#2、使用npm包管理工具，安装antd" class="headerlink" title="2、使用npm包管理工具，安装antd"></a>2、使用npm包管理工具，安装antd</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i antd --save</span><br></pre></td></tr></table></figure>
-
-<h3 id="3、配置antd组件的样式"><a href="#3、配置antd组件的样式" class="headerlink" title="3、配置antd组件的样式"></a>3、配置antd组件的样式</h3><ul>
-<li><p>安装babel-plugin-import按需加载组件代码和样式的 babel 插件</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i babel-plugin-import</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用npm run eject命令将所有配置暴漏出来</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm run eject</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改webpack.config.js配置</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'import'</span>, &#123;</span><br><span class="line">  libraryName: <span class="string">'antd'</span>,</span><br><span class="line">  style: <span class="string">'css'</span></span><br><span class="line">&#125;],</span><br></pre></td></tr></table></figure>
-
-</li>
+          <h2 id="ES5常用特性总结"><a href="#ES5常用特性总结" class="headerlink" title="ES5常用特性总结"></a>ES5常用特性总结</h2><h3 id="1、JSON对象"><a href="#1、JSON对象" class="headerlink" title="1、JSON对象"></a>1、JSON对象</h3><ul>
+<li>JS(数组/对象)转为JSON(数组/对象)使用JSON.stringify()</li>
+<li>JSON(数组/对象)转为JS(数组/对象)使用JSON.parse()</li>
 </ul>
-<p><img src="/images/1568869009929.jpg" alt="1568869009929"></p>
-<h3 id="4、安装css预处理"><a href="#4、安装css预处理" class="headerlink" title="4、安装css预处理"></a>4、安装css预处理</h3><ul>
-<li><p>安装less、less-loader</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i less less-loader --save-dev</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改webpack.config.js配置</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> lessRegex = <span class="regexp">/\.less$/</span>;</span><br><span class="line"><span class="keyword">const</span> lessModuleRegex = <span class="regexp">/\.module\.less$/</span>;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    test: lessRegex,</span><br><span class="line">    exclude: lessModuleRegex,</span><br><span class="line">    use: getStyleLoaders(</span><br><span class="line">    &#123;</span><br><span class="line">        importLoaders: <span class="number">3</span>,</span><br><span class="line">        sourceMap: isEnvProduction &amp;&amp; shouldUseSourceMap,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'less-loader'</span></span><br><span class="line">    ),</span><br><span class="line">	sideEffects: <span class="literal">true</span>,</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    test: lessModuleRegex,</span><br><span class="line">    use: getStyleLoaders(</span><br><span class="line">    &#123;</span><br><span class="line">        importLoaders: <span class="number">3</span>,</span><br><span class="line">        sourceMap: isEnvProduction &amp;&amp; shouldUseSourceMap,</span><br><span class="line">        modules: <span class="literal">true</span>,</span><br><span class="line">        getLocalIdent: getCSSModuleLocalIdent,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'less-loader'</span></span><br><span class="line">    ),</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p><img src="/images/1568869009930.jpg" alt="1568869009930"><br><img src="/images/1568869009931.jpg" alt="1568869009931"></p>
-<h3 id="5、目录结构"><a href="#5、目录结构" class="headerlink" title="5、目录结构"></a>5、目录结构</h3><p>开发源代码在src目录下进行：</p>
+<h3 id="2、Array数组"><a href="#2、Array数组" class="headerlink" title="2、Array数组"></a>2、Array数组</h3><p>var arr = new Array();</p>
 <ul>
-<li>components              基础组件、公共组件<ul>
-<li>BaseLayout         基本页</li>
-<li>Content               内容</li>
-<li>Footer                  底部</li>
-<li>Header                头部</li>
-<li>MenuSider         菜单栏</li>
-<li>Login                   登录页</li>
-<li>Register              注册页</li>
-</ul>
+<li><p>arr.length：数组长度</p>
 </li>
-<li>configs                       配置文件</li>
-<li>pages                         路由组件</li>
-<li>utils                            公共方法</li>
-</ul>
-<h3 id="6、基本页"><a href="#6、基本页" class="headerlink" title="6、基本页"></a>6、基本页</h3><ul>
-<li>使用useState等同于state、setState</li>
-</ul>
-<h3 id="7、菜单栏"><a href="#7、菜单栏" class="headerlink" title="7、菜单栏"></a>7、菜单栏</h3><ul>
-<li>在configs配置目录新建路由配置文件</li>
-<li>菜单配置文件递归</li>
-<li>路由跳转<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i react-router-dom --save</span><br></pre></td></tr></table></figure>
+<li><p>arr.indexOf(value)：数组是否包含字符串值，否则返回-1，判断字符串是否存在数组中</p>
+</li>
+<li><p>arr.forEach(function(item, index){})：一般遍历数组</p>
+</li>
+<li><p>arr.map(function(item, index){})：遍历数组返回一个新的数组</p>
+</li>
+<li><p>arr.filter(function(item, index){ })：遍历且过滤出一个新的数组</p>
+</li>
+<li><p>typeof返回数据类型：String、Number、Object、Function、Boolean、Undefined<br>如何判断Array、Null数据类型？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> type = [<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(type).slice(<span class="number">8</span>, <span class="number">-1</span>));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>argument伪数组：不具有数组的一般方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wei</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(argument);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">wei(<span class="number">1</span>,<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
-<h3 id="8、权限设置"><a href="#8、权限设置" class="headerlink" title="8、权限设置"></a>8、权限设置</h3><ul>
-<li><p>安装axios，封装ajax异步请求接口</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i axios --save</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>角色权限涉及到封装的、抽离的组件</p>
+<h3 id="3、Object对象"><a href="#3、Object对象" class="headerlink" title="3、Object对象"></a>3、Object对象</h3><p>var obj = { name: ‘a’, age: 13 };</p>
 <ul>
-<li>查询组件</li>
-<li>table组件</li>
-<li>分页组件</li>
-<li>创建角色模态框组件</li>
-<li>设置角色权限模态框组件</li>
+<li>Object.defineProperties(obj, param)：为指定对象定义扩展多个属性</li>
 </ul>
-</li>
-<li><p>用户权限涉及到封装的、抽离的组件</p>
+<h3 id="4、function方法"><a href="#4、function方法" class="headerlink" title="4、function方法"></a>4、function方法</h3><p>var obj = new Object();<br>var obj2 = new Object();</p>
 <ul>
-<li>查询组件</li>
-<li>table组件</li>
-<li>分页组件</li>
-<li>创建用户模态框组件</li>
-<li>设置用户权限模态框组件</li>
+<li>obj.call(obj2, arg1, arg2,…)</li>
+<li>obj.apply(obj2, [arg1, arg2,…])</li>
+<li>obj.bind(obj2, arg1, arg2,…)</li>
 </ul>
-</li>
-</ul>
-<h3 id="问题总结："><a href="#问题总结：" class="headerlink" title="问题总结："></a>问题总结：</h3><ul>
-<li><p>useEffect调用ajax异步请求角色列表，需要清除的effect（副作用）</p>
+<p>相同点：</p>
 <ul>
-<li>条件判断</li>
-<li>参数限制</li>
-<li>方法调用<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//条件判断：</span></span><br><span class="line"><span class="keyword">let</span> [dataSource, setDataSource] = useState([]);</span><br><span class="line">useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (dataSource.length === <span class="number">0</span>) &#123;<span class="comment">//根据自己业务逻辑加条件判断</span></span><br><span class="line">    	request();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//参数限制</span></span><br><span class="line"><span class="keyword">let</span> [roleList, setRoleList] = useState([]);</span><br><span class="line">useEffect(<span class="function"><span class="params">()</span> =&gt;</span> getRoleList(), []); </span><br><span class="line"><span class="comment">//或</span></span><br><span class="line">useEffect(<span class="function"><span class="params">()</span> =&gt;</span> getRoleList(), [roleList]);</span><br><span class="line"><span class="comment">//方法调用</span></span><br><span class="line">useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	request();</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="comment">//清理逻辑</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>改变this指向的对象，第一个参数都为指向的原型对象</li>
 </ul>
-</li>
-<li><p>获取子组件form表单数据</p>
+<p>区别：</p>
 <ul>
-<li>之前使用wrappedComponentRef获取不到子组件的属性与方法，</li>
-<li>使用useRef、forwardRef、useImperativeHandle获取得到子组件暴露的属性与方法，但是console会报红色警告，大概意思是你应该使用wrappedComponentRef，不应该使用useRef（what? 我刚从“wrappedComponentRef”那过来。。。）</li>
-<li>使用wrappedComponentRef、forwardRef、useImperativeHandle就可以了<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子组件</span></span><br><span class="line"><span class="keyword">import</span> React, &#123; forwardRef, useImperativeHandle &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="comment">//...省略代码</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">RoleForm</span>(<span class="params">props, ref</span>) </span>&#123;</span><br><span class="line">	useImperativeHandle(ref, () =&gt; &#123;</span><br><span class="line">        <span class="comment">//暴露子组件的参数与方法</span></span><br><span class="line">        <span class="keyword">return</span> props.form;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">//...省略代码</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Form.create()(forwardRef(RoleForm));</span><br><span class="line"><span class="comment">//父组件</span></span><br><span class="line"><span class="comment">//引用子组件时使用wrappedComponentRef获取子组件暴露的属性或方法</span></span><br></pre></td></tr></table></figure>
-
-</li>
+<li>call()、bind()从第二个参数开始传形参，以此传入；</li>
+<li>apply()第二参数必须为数组，数组为传递的形参。</li>
+<li>bind()、apply()会立即执行当前函数；bind()不会立即执行当前函数。</li>
 </ul>
-</li>
-</ul>
-<h3 id="9、登录页其、注册页"><a href="#9、登录页其、注册页" class="headerlink" title="9、登录页其、注册页"></a>9、登录页其、注册页</h3><ul>
-<li><p>安装md5，登录注册传给后端密码需要加密，后端再加密再验证</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i md5 --save</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装百度echarts插件</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i echarts echarts-<span class="keyword">for</span>-react --save</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="问题总结：-1"><a href="#问题总结：-1" class="headerlink" title="问题总结："></a>问题总结：</h3><ul>
-<li>未登录进行路由跳转（hash路由地址跳转问题）<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">自定义校验路由(除了登陆、注册以外)：判断是否登录，登录就渲染对应组件，否则跳转至登录</span><br><span class="line">&lt;Route path=&#123;path&#125; render=&#123;() =&gt; isLogin ? &lt;AuthComponent /&gt; : &lt;Redirect to='/login' /&gt;&#125; /&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="10、其它功能页"><a href="#10、其它功能页" class="headerlink" title="10、其它功能页"></a>10、其它功能页</h3><ul>
-<li>使用createContext、 useReducer、useContext实现redux的状态共享机制<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//关于redux相关不详细描述，直接贴代码；</span></span><br><span class="line"><span class="comment">//actionCreater.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; ADD_MESSAGE_OPTION, DELETE_MESSAGE_OPTION &#125; <span class="keyword">from</span> <span class="string">'./actionType'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">addMessageOption</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        type: ADD_MESSAGE_OPTION,</span><br><span class="line">        message</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">deleteMessageOption</span>(<span class="params">index</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        type: DELETE_MESSAGE_OPTION,</span><br><span class="line">        index</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//actionType.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> ADD_MESSAGE_OPTION = <span class="string">'add_message_option'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> DELETE_MESSAGE_OPTION = <span class="string">'delete_message_option'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//reducer.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; ADD_MESSAGE_OPTION, DELETE_MESSAGE_OPTION &#125; <span class="keyword">from</span> <span class="string">'./actionType'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> defaultState = localStorage.getItem(<span class="string">'_itemlist'</span>) ? <span class="built_in">JSON</span>.parse(localStorage.getItem(<span class="string">'_itemlist'</span>)) : [<span class="string">'学习react'</span>, <span class="string">'hook新特性'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params">state = defaultState, action</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> newState = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(state));</span><br><span class="line">    <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">        <span class="keyword">case</span> ADD_MESSAGE_OPTION:</span><br><span class="line">            newState.push(action.message);</span><br><span class="line">            <span class="keyword">return</span> [...newState];</span><br><span class="line">        <span class="keyword">case</span> DELETE_MESSAGE_OPTION:</span><br><span class="line">            newState.splice(action.index, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">return</span> [...newState];</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> state;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//下面具体实现</span></span><br><span class="line"><span class="comment">//根组件 todoList.js</span></span><br><span class="line"><span class="keyword">import</span> &#123;createContext, useReducer&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> Reducer, &#123; defaultState &#125; <span class="keyword">from</span> <span class="string">'../../store/reducer'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; addMessageOption, deleteMessageOption &#125; <span class="keyword">from</span> <span class="string">'../../store/actionCreater'</span>;</span><br><span class="line"><span class="keyword">import</span> ReduxPage <span class="keyword">from</span> <span class="string">'./redux'</span>; <span class="comment">//引入‘同目录下’的子组件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//导出上下文</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> Message = createContext(&#123;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用useReducer</span></span><br><span class="line"><span class="keyword">const</span> [state, dispatch] = useReducer(Reducer, defaultState);</span><br><span class="line"></span><br><span class="line"><span class="comment">//引用上下文，传递state、dispatch</span></span><br><span class="line">&lt;Message.Provider value=&#123;&#123; state, dispatch &#125;&#125;&gt;</span><br><span class="line">	...</span><br><span class="line">	&lt;ReduxPage /&gt;</span><br><span class="line">&lt;<span class="regexp">/Message.Provider&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/子组件 redux.js</span></span><br><span class="line"><span class="regexp">import &#123; useContext &#125; from 'react';</span></span><br><span class="line"><span class="regexp">import &#123; Message &#125; from './</span>todoList<span class="string">'; //导入上下文</span></span><br><span class="line"><span class="string">import &#123; addMessageOption &#125; from '</span>../../store/actionCreater<span class="string">';</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//引用根组件的上下文</span></span><br><span class="line"><span class="string">const &#123; state, dispatch &#125; = useContext(Message);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//修改根组件的内容</span></span><br><span class="line"><span class="string">dispatch(addMessageOption('</span>默认信息<span class="string">'));</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//共享根组件的state</span></span><br><span class="line"><span class="string">console.log(state);</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="问题总结：-2"><a href="#问题总结：-2" class="headerlink" title="问题总结："></a>问题总结：</h3><ul>
-<li>使用useReducer时，注意子组件是要嵌套到根组件里面，否则实现不了状态共享，你可以尝试下</li>
-</ul>
-<h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><p><img src="/images/manager_hook.gif" alt="manager_hook"></p>
-<h3 id="项目链接"><a href="#项目链接" class="headerlink" title="项目链接"></a>项目链接</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># https://github.com/caicaijun007/manager-hook</span><br></pre></td></tr></table></figure>
-
 
         
       
@@ -427,7 +351,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/16/React/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/14/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="菜菜君">
@@ -441,7 +365,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/09/16/React/" class="post-title-link" itemprop="url">学习React</a>
+            <a href="/2019/09/14/hello-world/" class="post-title-link" itemprop="url">我的博客？</a>
           
         </h1>
 
@@ -456,7 +380,7 @@
                 
               
 
-              <time title="创建时间：2019-09-16 21:34:54" itemprop="dateCreated datePublished" datetime="2019-09-16T21:34:54+08:00">2019-09-16</time>
+              <time title="创建时间：2019-09-14 09:27:40" itemprop="dateCreated datePublished" datetime="2019-09-14T09:27:40+08:00">2019-09-14</time>
             </span>
           
             
@@ -467,7 +391,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-15 00:31:52" itemprop="dateModified" datetime="2019-10-15T00:31:52+08:00">2019-10-15</time>
+                <time title="修改时间：2019-09-23 12:00:18" itemprop="dateModified" datetime="2019-09-23T12:00:18+08:00">2019-09-23</time>
               </span>
             
           
@@ -477,7 +401,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web前端/" itemprop="url" rel="index"><span itemprop="name">web前端</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/blog/" itemprop="url" rel="index"><span itemprop="name">blog</span></a></span>
 
                 
                 
@@ -496,114 +420,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="学习React新特性Hook"><a href="#学习React新特性Hook" class="headerlink" title="学习React新特性Hook"></a>学习React新特性Hook</h2><p>Hook可以让你在不编写class的情况下使用state以及其它React特性，100% 向后兼容的。当然，没有计划从 React 中移除 class。</p>
-<h3 id="1、State-Hook-与-Effect-Hook"><a href="#1、State-Hook-与-Effect-Hook" class="headerlink" title="1、State Hook 与 Effect Hook"></a>1、State Hook 与 Effect Hook</h3><p>牛刀小试：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState, useEffect, Fragment &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Card, Button &#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./index.less'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Example</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">const</span> [title, setTitle] = useState(<span class="string">'你还没点击！'</span>);</span><br><span class="line"></span><br><span class="line">    useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123; setTitle(<span class="string">`你点击了<span class="subst">$&#123;count&#125;</span>次`</span>) &#125;, [count]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;Fragment&gt;</span><br><span class="line">            &lt;Card title=&#123;title&#125; className=<span class="string">'card-wrapper'</span>&gt;</span><br><span class="line">                &lt;p&gt;&#123;<span class="string">`你点击了<span class="subst">$&#123;count&#125;</span>次`</span>&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">                &lt;Button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;点击&lt;/</span>Button&gt;</span><br><span class="line">            &lt;<span class="regexp">/Card&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>Fragment&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Example;</span><br></pre></td></tr></table></figure>
+          <h2 id="我的博客"><a href="#我的博客" class="headerlink" title="我的博客"></a>我的博客</h2><h3 id="第一个博客"><a href="#第一个博客" class="headerlink" title="第一个博客"></a>第一个博客</h3><p>真是奇妙的一天，我有了自己的第一个博客。！！！</p>
+<p>此刻心情:   😂😂😂</p>
+<h3 id="想法多多"><a href="#想法多多" class="headerlink" title="想法多多"></a>想法多多</h3><p>此时此刻，我有很多想法，然而不知道怎么表达出来；我想在后面的时间再一点点记录下来。每天进步一点点！！！</p>
+<h3 id="接下来干嘛？"><a href="#接下来干嘛？" class="headerlink" title="接下来干嘛？"></a>接下来干嘛？</h3><p>Um…继续努力吧！</p>
 
-<p><img src="/images/init_hook.gif" alt="state_hook"></p>
-<h3 id="2、使用React16-8的新特性Hook实现任务清单"><a href="#2、使用React16-8的新特性Hook实现任务清单" class="headerlink" title="2、使用React16.8的新特性Hook实现任务清单"></a>2、使用React16.8的新特性Hook实现任务清单</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState, useEffect, Fragment &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Card, Button, Input, List, Icon &#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./hook.less'</span>;</span><br><span class="line"><span class="keyword">const</span> ListItem = List.Item;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TodoList</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> initItemList = localStorage.getItem(<span class="string">'_itemlist'</span>) ? <span class="built_in">JSON</span>.parse(localStorage.getItem(<span class="string">'_itemlist'</span>)) : [<span class="string">'学习react'</span>, <span class="string">'hook新特性'</span>];</span><br><span class="line">    <span class="keyword">const</span> [inputValue, setInputValue] = useState(<span class="string">''</span>);</span><br><span class="line">    <span class="keyword">const</span> [itemList, setItemList] = useState(initItemList);</span><br><span class="line"></span><br><span class="line">    useEffect(<span class="function"><span class="params">()</span> =&gt;</span> localStorage.setItem(<span class="string">'_itemlist'</span>, <span class="built_in">JSON</span>.stringify(itemList)));</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">changeInputValue</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        setInputValue(e.target.value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">addInputValue</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(inputValue &amp;&amp; <span class="string">''</span> !== inputValue) &#123;</span><br><span class="line">            itemList.push(inputValue);</span><br><span class="line">            setItemList(itemList);</span><br><span class="line">            setInputValue(<span class="string">''</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getItemList</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> itemList.map(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &lt;ListItem key=&#123;index&#125; onClick=&#123;() =&gt; deleteItem(index)&#125;&gt;&#123;item&#125;&lt;Icon className='icon' type="minus-circle" theme="twoTone" /&gt;&lt;/ListItem&gt;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function deleteItem(index) &#123;</span><br><span class="line">        let list = [...itemList];</span><br><span class="line">        list.splice(index, 1);</span><br><span class="line">        setItemList(list);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return (</span><br><span class="line">        &lt;Fragment&gt;</span><br><span class="line">            &lt;Card title='任务清单' className='card-wrapper'&gt;</span><br><span class="line">                &lt;Input placeholder='请输入任务' value=&#123;inputValue&#125; onChange=&#123;changeInputValue&#125;  /&gt;</span><br><span class="line">                &lt;Button type='primary' onClick=&#123;addInputValue&#125;&gt;添加&lt;/Button&gt;</span><br><span class="line">                &lt;List className='list' size="small" bordered&gt;</span><br><span class="line">                    &#123;</span><br><span class="line">                        itemList.length&gt;0 ? getItemList() : ''</span><br><span class="line">                    &#125;</span><br><span class="line">                &lt;/List&gt;</span><br><span class="line">            &lt;/Card&gt;</span><br><span class="line">        &lt;/Fragment&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default TodoList;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/todolist_hook.gif" alt="state_hook"></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/16/ES7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="菜菜君">
-      <meta itemprop="description" content="Learn once, write anywhere">
-      <meta itemprop="image" content="/images/caicaijun.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="菜菜君">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/16/ES7/" class="post-title-link" itemprop="url">学习ES7</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-16 14:35:13" itemprop="dateCreated datePublished" datetime="2019-09-16T14:35:13+08:00">2019-09-16</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-23 11:59:43" itemprop="dateModified" datetime="2019-09-23T11:59:43+08:00">2019-09-23</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web前端/" itemprop="url" rel="index"><span itemprop="name">web前端</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="了解ES7"><a href="#了解ES7" class="headerlink" title="了解ES7"></a>了解ES7</h2><h3 id="1、指数运算符（幂）"><a href="#1、指数运算符（幂）" class="headerlink" title="1、指数运算符（幂）**"></a>1、指数运算符（幂）**</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">2</span>**<span class="number">3</span>); <span class="comment">//8</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2、数组includes"><a href="#2、数组includes" class="headerlink" title="2、数组includes()"></a>2、数组includes()</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'3'</span>, <span class="number">3</span>, <span class="string">'abc'</span>, <span class="literal">NaN</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr.includes(<span class="number">3</span>)); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.includes(<span class="string">'3'</span>)); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.includes(<span class="string">'b'</span>)); <span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.includes(<span class="literal">NaN</span>)); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3、async函数"><a href="#3、async函数" class="headerlink" title="3、async函数"></a>3、async函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">t</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> setTimeout(resolve, t));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'开始'</span>);</span><br><span class="line">	<span class="keyword">await</span> test(<span class="number">3000</span>);</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'结束'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4、字符串扩展"><a href="#4、字符串扩展" class="headerlink" title="4、字符串扩展"></a>4、字符串扩展</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 前补白</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'3'</span>.padStart(<span class="number">2</span>, <span class="string">'0'</span>));</span><br><span class="line"><span class="comment">// 后补白</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'3:'</span>.padEnd(<span class="number">4</span>, <span class="string">'00'</span>));</span><br><span class="line"><span class="comment">//标签模板</span></span><br><span class="line"><span class="keyword">let</span> pn = &#123;</span><br><span class="line">	name: <span class="string">'cc'</span>,</span><br><span class="line">	say: <span class="string">'hello'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">a, b, c</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> c+b+a</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(test<span class="string">`<span class="subst">$&#123;pn.say&#125;</span>!<span class="subst">$&#123;pn.name&#125;</span>,123`</span>);</span><br><span class="line"><span class="comment">//模板字符串不转译</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`abc\n123`</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>.raw<span class="string">`abc\n123`</span>);</span><br></pre></td></tr></table></figure>
         
       
     </div>
@@ -626,7 +447,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
   </nav>
 
 
@@ -700,7 +521,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
