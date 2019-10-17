@@ -59,7 +59,7 @@
 <meta property="og:site_name" content="菜菜君">
 <meta property="og:description" content="HTML、XHTML和HTML5三者的关系和区别1234567891011121314151、HTML全称HyperText Markup Language(超文本标记语言)，也就是HTML4.0.1。2、XHTML全称EXtensible HyperText Markup Language(拓展的超文本标记语言)，它是XML风格的HTML4.0.1，称之为更严格、更纯净的HTML4.0.1(过渡">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-14T16:34:39.952Z">
+<meta property="og:updated_time" content="2019-10-17T08:36:33.137Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="总结HTML">
 <meta name="twitter:description" content="HTML、XHTML和HTML5三者的关系和区别1234567891011121314151、HTML全称HyperText Markup Language(超文本标记语言)，也就是HTML4.0.1。2、XHTML全称EXtensible HyperText Markup Language(拓展的超文本标记语言)，它是XML风格的HTML4.0.1，称之为更严格、更纯净的HTML4.0.1(过渡">
@@ -128,7 +128,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-        <p class="site-subtitle">日积月累</p>
+        <p class="site-subtitle">总结之前学过、用过、遇到过的知识点，自我进阶</p>
       
   </div>
 
@@ -255,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-15 00:34:39" itemprop="dateModified" datetime="2019-10-15T00:34:39+08:00">2019-10-15</time>
+                <time title="修改时间：2019-10-17 16:36:33" itemprop="dateModified" datetime="2019-10-17T16:36:33+08:00">2019-10-17</time>
               </span>
             
           
@@ -309,6 +309,36 @@
 <p>6、语义化验证</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 去掉CSS样式，然后看页面是否具有很好的可读性</span><br></pre></td></tr></table></figure>
 
+<h3 id="HTML5常用新标签"><a href="#HTML5常用新标签" class="headerlink" title="HTML5常用新标签"></a>HTML5常用新标签</h3><ul>
+<li><p>header：定义文档的页眉 头部</p>
+</li>
+<li><p>nav：定义导航链接的部分</p>
+</li>
+<li><p>footer：定义文档或节的页脚 底部</p>
+</li>
+<li><p>article：定义文章</p>
+</li>
+<li><p>section：定义文档中的节 区段</p>
+</li>
+<li><p>aside：定义其所处内容之外的内容 侧边</p>
+</li>
+<li><p>datalist：定义选项列表；与 input 元素配合使用该元素</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">list</span>=<span class="string">"type"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">datalist</span> <span class="attr">id</span>=<span class="string">"type"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>number<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>string<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>array<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>object<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">datalist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>fieldset：将表单内的相关元素分组，打包；与legend 搭配使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span>用户登录<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    用户名: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    密　码: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="input标签新增的type属性值"><a href="#input标签新增的type属性值" class="headerlink" title="input标签新增的type属性值"></a>input标签新增的type属性值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">url		输入url格式</span><br><span class="line">number	输入数字格式</span><br><span class="line">email	输入邮箱格式</span><br><span class="line">tel		输入手机号码格式</span><br><span class="line">search	搜索框</span><br><span class="line">range	自由拖动滑块</span><br><span class="line">datetime时间</span><br><span class="line">time	小时分钟</span><br><span class="line">date	年月日</span><br><span class="line">month	年月</span><br><span class="line">week	星期 年</span><br></pre></td></tr></table></figure>
+
+<h3 id="常用新属性"><a href="#常用新属性" class="headerlink" title="常用新属性"></a>常用新属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">placeholder		默认值</span><br><span class="line">autofocus		自动获取焦点</span><br><span class="line">multiple		多文件上传</span><br><span class="line">autocomplete	自动补全功能</span><br><span class="line">required		必填项</span><br><span class="line">accesskey		获得焦点</span><br></pre></td></tr></table></figure>
+
+<h3 id="多媒体标签"><a href="#多媒体标签" class="headerlink" title="多媒体标签"></a>多媒体标签</h3><ul>
+<li>embed：标签定义嵌入的内容</li>
+<li>audio：播放音频</li>
+<li>video：播放视频</li>
+</ul>
 
     </div>
 
@@ -344,8 +374,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/10/15/Vue-SC/" rel="prev" title="学习Vue源码">
-                  学习Vue源码 <i class="fa fa-chevron-right"></i>
+                <a href="/2019/10/15/Vue-SC/" rel="prev" title="学习Vue source code">
+                  学习Vue source code <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -395,7 +425,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML、XHTML和HTML5三者的关系和区别"><span class="nav-number">1.</span> <span class="nav-text">HTML、XHTML和HTML5三者的关系和区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语义化"><span class="nav-number">2.</span> <span class="nav-text">语义化</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML、XHTML和HTML5三者的关系和区别"><span class="nav-number">1.</span> <span class="nav-text">HTML、XHTML和HTML5三者的关系和区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语义化"><span class="nav-number">2.</span> <span class="nav-text">语义化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5常用新标签"><span class="nav-number">3.</span> <span class="nav-text">HTML5常用新标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#input标签新增的type属性值"><span class="nav-number">4.</span> <span class="nav-text">input标签新增的type属性值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用新属性"><span class="nav-number">5.</span> <span class="nav-text">常用新属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多媒体标签"><span class="nav-number">6.</span> <span class="nav-text">多媒体标签</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
