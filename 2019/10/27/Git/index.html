@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="clone克隆1# git clone 远程仓库地址  status查看状态ls列出所有文件 1# git status  add添加添加所有新增或修改文件 1# git add .  添加指定文件 1# git add hello.html  commit提交commit提交，git管理该文件 1# git commit -m &amp;apos;添加hello.html文件&amp;apos;  remote">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="总结Git基本操作">
+<meta property="og:url" content="http://yoursite.com/2019/10/27/Git/index.html">
+<meta property="og:site_name" content="菜菜君">
+<meta property="og:description" content="clone克隆1# git clone 远程仓库地址  status查看状态ls列出所有文件 1# git status  add添加添加所有新增或修改文件 1# git add .  添加指定文件 1# git add hello.html  commit提交commit提交，git管理该文件 1# git commit -m &amp;apos;添加hello.html文件&amp;apos;  remote">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-27T04:20:52.489Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="总结Git基本操作">
+<meta name="twitter:description" content="clone克隆1# git clone 远程仓库地址  status查看状态ls列出所有文件 1# git status  add添加添加所有新增或修改文件 1# git add .  添加指定文件 1# git add hello.html  commit提交commit提交，git管理该文件 1# git commit -m &amp;apos;添加hello.html文件&amp;apos;  remote">
+  <link rel="canonical" href="http://yoursite.com/2019/10/27/Git/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>总结Git基本操作 | 菜菜君</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">菜菜君</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">The IT guy on the programming path</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/Git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="菜菜君">
+      <meta itemprop="description" content="Learn once, write anywhere">
+      <meta itemprop="image" content="/images/caicaijun.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜菜君">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">总结Git基本操作
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-27 11:43:08 / 修改时间：12:20:52" itemprop="dateCreated datePublished" datetime="2019-10-27T11:43:08+08:00">2019-10-27</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="clone克隆"><a href="#clone克隆" class="headerlink" title="clone克隆"></a>clone克隆</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git clone 远程仓库地址</span><br></pre></td></tr></table></figure>
+
+<h3 id="status查看状态"><a href="#status查看状态" class="headerlink" title="status查看状态"></a>status查看状态</h3><p>ls列出所有文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git status</span><br></pre></td></tr></table></figure>
+
+<h3 id="add添加"><a href="#add添加" class="headerlink" title="add添加"></a>add添加</h3><p>添加所有新增或修改文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git add .</span><br></pre></td></tr></table></figure>
+
+<p>添加指定文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git add hello.html</span><br></pre></td></tr></table></figure>
+
+<h3 id="commit提交"><a href="#commit提交" class="headerlink" title="commit提交"></a>commit提交</h3><p>commit提交，git管理该文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git commit -m &apos;添加hello.html文件&apos;</span><br></pre></td></tr></table></figure>
+
+<h3 id="remote远程版本分支"><a href="#remote远程版本分支" class="headerlink" title="remote远程版本分支"></a>remote远程版本分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#  git remote -v</span><br></pre></td></tr></table></figure>
+
+<h3 id="push推送"><a href="#push推送" class="headerlink" title="push推送"></a>push推送</h3><p>push推送到远程仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># git push</span><br><span class="line"># git push origin master</span><br></pre></td></tr></table></figure>
+
+<h3 id="checkout切换分支"><a href="#checkout切换分支" class="headerlink" title="checkout切换分支"></a>checkout切换分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git checkout -b test</span><br></pre></td></tr></table></figure>
+
+<h3 id="merge合并"><a href="#merge合并" class="headerlink" title="merge合并"></a>merge合并</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git merge test</span><br></pre></td></tr></table></figure>
+
+<h3 id="test分支代码合并到master主分支上"><a href="#test分支代码合并到master主分支上" class="headerlink" title="test分支代码合并到master主分支上"></a>test分支代码合并到master主分支上</h3><p>1、checkout切换master主分支<br>2、merge合并test分支代码<br>3、将合并代码推送到远程仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># git checkout master</span><br><span class="line"># git merge test</span><br><span class="line"># git push origin master</span><br></pre></td></tr></table></figure>
+
+<h3 id="branch-D删除分支"><a href="#branch-D删除分支" class="headerlink" title="branch -D删除分支"></a>branch -D删除分支</h3><p>1、删除本地分支<br>2、将空推送远程仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># git branch -D test</span><br><span class="line"># git branch -a</span><br><span class="line"># git push origin :test</span><br></pre></td></tr></table></figure>
+
+<h3 id="reset回退上一个版本"><a href="#reset回退上一个版本" class="headerlink" title="reset回退上一个版本"></a>reset回退上一个版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># git reset --hard head^</span><br><span class="line"># git log</span><br></pre></td></tr></table></figure>
+
+<h3 id="log、reflog查看日志"><a href="#log、reflog查看日志" class="headerlink" title="log、reflog查看日志"></a>log、reflog查看日志</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># git log</span><br><span class="line"># git reflog</span><br></pre></td></tr></table></figure>
+
+<h3 id="reset回退指定版本"><a href="#reset回退指定版本" class="headerlink" title="reset回退指定版本"></a>reset回退指定版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git reset --hard HEAD@&#123;1&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/git/" rel="tag"># git</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/10/27/nvm/" rel="next" title="安装nvm进行node.js版本管理">
+                  <i class="fa fa-chevron-left"></i> 安装nvm进行node.js版本管理
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#clone克隆"><span class="nav-number">1.</span> <span class="nav-text">clone克隆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#status查看状态"><span class="nav-number">2.</span> <span class="nav-text">status查看状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#add添加"><span class="nav-number">3.</span> <span class="nav-text">add添加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#commit提交"><span class="nav-number">4.</span> <span class="nav-text">commit提交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#remote远程版本分支"><span class="nav-number">5.</span> <span class="nav-text">remote远程版本分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#push推送"><span class="nav-number">6.</span> <span class="nav-text">push推送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#checkout切换分支"><span class="nav-number">7.</span> <span class="nav-text">checkout切换分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#merge合并"><span class="nav-number">8.</span> <span class="nav-text">merge合并</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#test分支代码合并到master主分支上"><span class="nav-number">9.</span> <span class="nav-text">test分支代码合并到master主分支上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#branch-D删除分支"><span class="nav-number">10.</span> <span class="nav-text">branch -D删除分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reset回退上一个版本"><span class="nav-number">11.</span> <span class="nav-text">reset回退上一个版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#log、reflog查看日志"><span class="nav-number">12.</span> <span class="nav-text">log、reflog查看日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reset回退指定版本"><span class="nav-number">13.</span> <span class="nav-text">reset回退指定版本</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/caicaijun.png"
+      alt="菜菜君">
+  <p class="site-author-name" itemprop="name">菜菜君</p>
+  <div class="site-description" itemprop="description">Learn once, write anywhere</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">菜菜君</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
