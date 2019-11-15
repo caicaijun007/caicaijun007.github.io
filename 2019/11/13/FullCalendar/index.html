@@ -51,19 +51,19 @@
   };
 </script>
 
-  <meta name="description" content="关于vue-cli打包语法检测1、如果代码不符合ESlint标准、编辑器设置编辑规范、自动补全等；那么，你可能遇到的打包报错：  完整js语句以;结束 多余空格 不需要解析的双引号改为单引号 换行 不全等比较改为全等比较（执行语法检测不会修改，手动改） 方法名与小括号与花括号都要有空格等等…  2、如果使用vue-cli3创建项目时，没有选择Linter / Formatter（ESLint）标准">
-<meta name="keywords" content="vue-cli3">
+  <meta name="description" content="Vue Component - FullCalendar1、安装 1# npm i @fullcalendar/vue @fullcalendar/daygrid @fullcalendar/interaction --save  2、使用 12345678910111213141516171819202122232425262728293031323334353637383940&amp;lt;temp">
+<meta name="keywords" content="FullCalendar">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于vue-cli打包语法检测">
-<meta property="og:url" content="http://yoursite.com/2019/11/08/vueLint/index.html">
+<meta property="og:title" content="在vue项目中使用FullCalendar排班插件">
+<meta property="og:url" content="http://yoursite.com/2019/11/13/FullCalendar/index.html">
 <meta property="og:site_name" content="菜菜君">
-<meta property="og:description" content="关于vue-cli打包语法检测1、如果代码不符合ESlint标准、编辑器设置编辑规范、自动补全等；那么，你可能遇到的打包报错：  完整js语句以;结束 多余空格 不需要解析的双引号改为单引号 换行 不全等比较改为全等比较（执行语法检测不会修改，手动改） 方法名与小括号与花括号都要有空格等等…  2、如果使用vue-cli3创建项目时，没有选择Linter / Formatter（ESLint）标准">
+<meta property="og:description" content="Vue Component - FullCalendar1、安装 1# npm i @fullcalendar/vue @fullcalendar/daygrid @fullcalendar/interaction --save  2、使用 12345678910111213141516171819202122232425262728293031323334353637383940&amp;lt;temp">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-08T15:16:59.828Z">
+<meta property="og:updated_time" content="2019-11-15T15:11:47.614Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于vue-cli打包语法检测">
-<meta name="twitter:description" content="关于vue-cli打包语法检测1、如果代码不符合ESlint标准、编辑器设置编辑规范、自动补全等；那么，你可能遇到的打包报错：  完整js语句以;结束 多余空格 不需要解析的双引号改为单引号 换行 不全等比较改为全等比较（执行语法检测不会修改，手动改） 方法名与小括号与花括号都要有空格等等…  2、如果使用vue-cli3创建项目时，没有选择Linter / Formatter（ESLint）标准">
-  <link rel="canonical" href="http://yoursite.com/2019/11/08/vueLint/">
+<meta name="twitter:title" content="在vue项目中使用FullCalendar排班插件">
+<meta name="twitter:description" content="Vue Component - FullCalendar1、安装 1# npm i @fullcalendar/vue @fullcalendar/daygrid @fullcalendar/interaction --save  2、使用 12345678910111213141516171819202122232425262728293031323334353637383940&amp;lt;temp">
+  <link rel="canonical" href="http://yoursite.com/2019/11/13/FullCalendar/">
 
 
 <script id="page-configurations">
@@ -77,7 +77,7 @@
   };
 </script>
 
-  <title>关于vue-cli打包语法检测 | 菜菜君</title>
+  <title>在vue项目中使用FullCalendar排班插件 | 菜菜君</title>
   
 
 
@@ -216,7 +216,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/vueLint/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/13/FullCalendar/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="菜菜君">
@@ -228,7 +228,7 @@
       <meta itemprop="name" content="菜菜君">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">关于vue-cli打包语法检测
+        <h1 class="post-title" itemprop="name headline">在vue项目中使用FullCalendar排班插件
 
           
         </h1>
@@ -244,11 +244,19 @@
                 
               
 
-              <time title="创建时间：2019-11-08 16:30:40 / 修改时间：23:16:59" itemprop="dateCreated datePublished" datetime="2019-11-08T16:30:40+08:00">2019-11-08</time>
+              <time title="创建时间：2019-11-13 18:15:30" itemprop="dateCreated datePublished" datetime="2019-11-13T18:15:30+08:00">2019-11-13</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-15 23:11:47" itemprop="dateModified" datetime="2019-11-15T23:11:47+08:00">2019-11-15</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -276,17 +284,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="关于vue-cli打包语法检测"><a href="#关于vue-cli打包语法检测" class="headerlink" title="关于vue-cli打包语法检测"></a>关于vue-cli打包语法检测</h2><p>1、如果代码不符合ESlint标准、编辑器设置编辑规范、自动补全等；那么，你可能遇到的打包报错：</p>
-<ul>
-<li>完整js语句以;结束</li>
-<li>多余空格</li>
-<li>不需要解析的双引号改为单引号</li>
-<li>换行</li>
-<li>不全等比较改为全等比较（执行语法检测不会修改，手动改）</li>
-<li>方法名与小括号与花括号都要有空格<br>等等…</li>
-</ul>
-<p>2、如果使用vue-cli3创建项目时，没有选择Linter / Formatter（ESLint）标准检测或者写的代码不规范；那么，打包前要要执行下语法检测，再打包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># npm run lint</span><br><span class="line"># npm run build</span><br></pre></td></tr></table></figure>
+        <h2 id="Vue-Component-FullCalendar"><a href="#Vue-Component-FullCalendar" class="headerlink" title="Vue Component - FullCalendar"></a>Vue Component - FullCalendar</h2><p>1、安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i @fullcalendar/vue @fullcalendar/daygrid @fullcalendar/interaction --save</span><br></pre></td></tr></table></figure>
+
+<p>2、使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;FullCalendar</span><br><span class="line">      @dateClick=<span class="string">"dateClick"</span></span><br><span class="line">      defaultView=<span class="string">"dayGridMonth"</span></span><br><span class="line">      :plugins=<span class="string">"calendarPlugins"</span></span><br><span class="line">      locale=<span class="string">"zh-cn"</span></span><br><span class="line">      :events=<span class="string">"events"</span></span><br><span class="line">    /&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">import FullCalendar from '@fullcalendar/</span>vue<span class="string">'</span></span><br><span class="line"><span class="string">import dayGridPlugin from '</span>@fullcalendar/daygrid<span class="string">'</span></span><br><span class="line"><span class="string">import interactionPlugin from '</span>@fullcalendar/interaction<span class="string">'</span></span><br><span class="line"><span class="string">import '</span>@fullcalendar/core/locales/zh-cn<span class="string">'</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">export default &#123;</span></span><br><span class="line"><span class="string">  name: '</span>Schedule<span class="string">',</span></span><br><span class="line"><span class="string">  components: &#123;</span></span><br><span class="line"><span class="string">    FullCalendar</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">  data () &#123;</span></span><br><span class="line"><span class="string">    return &#123;</span></span><br><span class="line"><span class="string">      calendarPlugins: [dayGridPlugin, interactionPlugin],</span></span><br><span class="line"><span class="string">      events: [</span></span><br><span class="line"><span class="string">      	// your code</span></span><br><span class="line"><span class="string">      ]</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">  methods: &#123;</span></span><br><span class="line"><span class="string">      dateClick (arg) &#123;</span></span><br><span class="line"><span class="string">          // your code</span></span><br><span class="line"><span class="string">        &#125;,</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;style lang="less" scoped&gt;</span></span><br><span class="line"><span class="string">@import "~@fullcalendar/core/main.css";</span></span><br><span class="line"><span class="string">@import "~@fullcalendar/daygrid/main.css";</span></span><br><span class="line"><span class="string">&lt;/style&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># https://fullcalendar.io/docs/vue</span><br><span class="line"># https://fullcalendar.io/docs/getting-started</span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -303,7 +307,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/vue-cli3/" rel="tag"># vue-cli3</a>
+              <a href="/tags/FullCalendar/" rel="tag"># FullCalendar</a>
             
           </div>
         
@@ -313,8 +317,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/11/07/moment/" rel="next" title="使用moment时间格式化">
-                  <i class="fa fa-chevron-left"></i> 使用moment时间格式化
+                <a href="/2019/11/12/Vant/" rel="next" title="在vue中使用Vant框架">
+                  <i class="fa fa-chevron-left"></i> 在vue中使用Vant框架
                 </a>
               
             </div>
@@ -322,10 +326,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/11/08/Network/" rel="prev" title="vue项目中检测网络状态Network">
-                  vue项目中检测网络状态Network <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -374,7 +374,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于vue-cli打包语法检测"><span class="nav-number">1.</span> <span class="nav-text">关于vue-cli打包语法检测</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-Component-FullCalendar"><span class="nav-number">1.</span> <span class="nav-text">Vue Component - FullCalendar</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文档"><span class="nav-number">1.1.</span> <span class="nav-text">参考文档</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->

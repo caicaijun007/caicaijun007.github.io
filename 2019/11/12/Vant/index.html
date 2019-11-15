@@ -59,7 +59,7 @@
 <meta property="og:site_name" content="菜菜君">
 <meta property="og:description" content="在vue项目中引用vant UI框架1、安装vant插件 1# npm i vant -S  2、全局引入 12345import Vue from &apos;vue&apos;import Vant from &apos;vant&apos;import &apos;vant/lib/index.css&apos;Vue.use(Vant)  3、按需引入 1# npm i babel-plugin-import -D  123456789101112">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-12T12:02:43.833Z">
+<meta property="og:updated_time" content="2019-11-15T15:01:04.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在vue中使用Vant框架">
 <meta name="twitter:description" content="在vue项目中引用vant UI框架1、安装vant插件 1# npm i vant -S  2、全局引入 12345import Vue from &apos;vue&apos;import Vant from &apos;vant&apos;import &apos;vant/lib/index.css&apos;Vue.use(Vant)  3、按需引入 1# npm i babel-plugin-import -D  123456789101112">
@@ -244,11 +244,19 @@
                 
               
 
-              <time title="创建时间：2019-11-12 19:51:10 / 修改时间：20:02:43" itemprop="dateCreated datePublished" datetime="2019-11-12T19:51:10+08:00">2019-11-12</time>
+              <time title="创建时间：2019-11-12 19:51:10" itemprop="dateCreated datePublished" datetime="2019-11-12T19:51:10+08:00">2019-11-12</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-15 23:01:04" itemprop="dateModified" datetime="2019-11-15T23:01:04+08:00">2019-11-15</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -287,7 +295,7 @@
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// babel.config.js</span></span><br><span class="line">plugins: [</span><br><span class="line">    [<span class="string">'import'</span>, &#123;</span><br><span class="line">      libraryName: <span class="string">'vant'</span>,</span><br><span class="line">      libraryDirectory: <span class="string">'es'</span>,</span><br><span class="line">      style: <span class="literal">true</span></span><br><span class="line">    &#125;, <span class="string">'vant'</span>]</span><br><span class="line">]</span><br><span class="line"><span class="comment">// 组件中按需引入</span></span><br><span class="line">&lt;van-button type=<span class="string">"default"</span>&gt;默认按钮&lt;<span class="regexp">/van-button&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">import &#123; Button &#125; from 'vant'</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">Vue.use(Button)</span></span><br></pre></td></tr></table></figure>
 
-
+<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># https://youzan.github.io/vant-weapp/#/intro</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -321,6 +329,10 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/11/13/FullCalendar/" rel="prev" title="在vue项目中使用FullCalendar排班插件">
+                  在vue项目中使用FullCalendar排班插件 <i class="fa fa-chevron-right"></i>
+                </a>
               
             </div>
           </div>
@@ -369,7 +381,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#在vue项目中引用vant-UI框架"><span class="nav-number">1.</span> <span class="nav-text">在vue项目中引用vant UI框架</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#在vue项目中引用vant-UI框架"><span class="nav-number">1.</span> <span class="nav-text">在vue项目中引用vant UI框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文档"><span class="nav-number">2.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -387,7 +399,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -413,7 +425,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
