@@ -214,6 +214,288 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/05/vue-router3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="菜菜君">
+      <meta itemprop="description" content="Learn once, write anywhere">
+      <meta itemprop="image" content="/images/caicaijun.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜菜君">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/11/05/vue-router3/" class="post-title-link" itemprop="url">vue-router3.x之导航守卫</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-05 16:17:58" itemprop="dateCreated datePublished" datetime="2019-11-05T16:17:58+08:00">2019-11-05</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-12 11:08:06" itemprop="dateModified" datetime="2019-11-12T11:08:06+08:00">2019-11-12</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web前端/" itemprop="url" rel="index"><span itemprop="name">web前端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="总结vue-router3-x使用导航守卫出现问题"><a href="#总结vue-router3-x使用导航守卫出现问题" class="headerlink" title="总结vue-router3.x使用导航守卫出现问题"></a>总结vue-router3.x使用导航守卫出现问题</h2><h3 id="死循环…栈溢出…"><a href="#死循环…栈溢出…" class="headerlink" title="死循环…栈溢出…"></a>死循环…栈溢出…</h3><p>需求：跳转其它路由时，判断是否登录<br>问题：跳转不到登录导致死循环，直至栈溢出<br>代码说明：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// store.js</span></span><br><span class="line"><span class="comment">// store获取本地保存token</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> token = localStorage.getItem(<span class="string">'_token'</span>) ? <span class="built_in">JSON</span>.parse(localStorage.getItem(<span class="string">'_token'</span>)) : <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    token</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;&#125;,</span><br><span class="line">  getters: &#123;&#125;,</span><br><span class="line">  actions: &#123;&#125;,</span><br><span class="line">  modules: &#123;&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// router.js</span></span><br><span class="line"><span class="comment">// 路由配置</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Home = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../views/home'</span>)</span><br><span class="line"><span class="keyword">const</span> Login = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../views/login'</span>)</span><br><span class="line"><span class="keyword">const</span> Data = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../views/data'</span>)</span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">''</span>,</span><br><span class="line">    redirect: <span class="string">'/home'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/home'</span>,</span><br><span class="line">    component: Home</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/login'</span>,</span><br><span class="line">    component: Login</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/data'</span>,</span><br><span class="line">    component: Data</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  linkActiveClass: <span class="string">'active'</span>,</span><br><span class="line">  mode: <span class="string">'history'</span>,</span><br><span class="line">  routes</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="comment">// 使用router导航守卫</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'./store'</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = <span class="literal">false</span></span><br><span class="line"><span class="comment">// 导航守卫</span></span><br><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (store.state.token) &#123;<span class="comment">// token判断是否登录</span></span><br><span class="line">    <span class="keyword">if</span> (to.path === <span class="string">'/login'</span>) &#123;</span><br><span class="line">      next(&#123; <span class="attr">path</span>: <span class="keyword">from</span>.path &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    next()</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;<span class="comment">// 注意，这里路由跳转不过去时，不加条件判断会出现死循环，直至栈溢出</span></span><br><span class="line">    <span class="keyword">if</span> (to.path === <span class="string">'/login'</span>) &#123;</span><br><span class="line">      next()</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      next(&#123; <span class="attr">path</span>: <span class="string">'/login'</span> &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  store,</span><br><span class="line">  router,</span><br><span class="line">  render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">&#125;).$mount(<span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="上传ftp有多个文件嵌套，页面刷新之后，路由跳转出问题"><a href="#上传ftp有多个文件嵌套，页面刷新之后，路由跳转出问题" class="headerlink" title="上传ftp有多个文件嵌套，页面刷新之后，路由跳转出问题"></a>上传ftp有多个文件嵌套，页面刷新之后，路由跳转出问题</h3><ul>
+<li>页面刷新后href不再等于开始请求的带路径的url</li>
+<li>路由匹配不到</li>
+</ul>
+<h3 id="history-and-hash"><a href="#history-and-hash" class="headerlink" title="history and hash"></a>history and hash</h3><p>问题：关于上传FTP域名后面嵌套多层目录，页面刷新、退出刷新页面，跳转路由时出现404情况<br>解决方法：路由配置history改为hash</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/05/vue-cli3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="菜菜君">
+      <meta itemprop="description" content="Learn once, write anywhere">
+      <meta itemprop="image" content="/images/caicaijun.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜菜君">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/11/05/vue-cli3/" class="post-title-link" itemprop="url">使用vue-cli3创建项目，打包时出现的问题</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-05 09:55:57" itemprop="dateCreated datePublished" datetime="2019-11-05T09:55:57+08:00">2019-11-05</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-06 09:07:48" itemprop="dateModified" datetime="2019-11-06T09:07:48+08:00">2019-11-06</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web前端/" itemprop="url" rel="index"><span itemprop="name">web前端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="总结使用vue-cli3创建项目，打包部署到FTP上时遇到的问题"><a href="#总结使用vue-cli3创建项目，打包部署到FTP上时遇到的问题" class="headerlink" title="总结使用vue-cli3创建项目，打包部署到FTP上时遇到的问题"></a>总结使用vue-cli3创建项目，打包部署到FTP上时遇到的问题</h2><h3 id="相对路劲问题"><a href="#相对路劲问题" class="headerlink" title="相对路劲问题"></a>相对路劲问题</h3><p>1、在项目根目录添加vue.config.js文件<br>2、添加路径处理代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// 路径默认'/'，部署上线时要改为URL</span></span><br><span class="line">  publicPath: process.env.NODE_ENV === <span class="string">'production'</span> ? <span class="string">'http://test.manager.com/dist/'</span> : <span class="string">'./'</span>,</span><br><span class="line">  <span class="comment">// 生产环境构建文件的目录</span></span><br><span class="line">  outputDir: <span class="string">'dist'</span>,</span><br><span class="line">  <span class="comment">// 相对于outputDir的全部静态资源(js、css、img、fonts...)目录</span></span><br><span class="line">  assetsDir: <span class="string">''</span>,</span><br><span class="line">  <span class="comment">// 生产环境的source map</span></span><br><span class="line">  productionSourceMap: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># https://cli.vuejs.org/zh/guide/cli-service.html</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/03/ManagerSystem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="菜菜君">
+      <meta itemprop="description" content="Learn once, write anywhere">
+      <meta itemprop="image" content="/images/caicaijun.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜菜君">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/11/03/ManagerSystem/" class="post-title-link" itemprop="url">基于vue+element-ui做通用的后台管理系统</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-03 09:05:19 / 修改时间：09:13:14" itemprop="dateCreated datePublished" datetime="2019-11-03T09:05:19+08:00">2019-11-03</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web前端/" itemprop="url" rel="index"><span itemprop="name">web前端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="后台管理"><a href="#后台管理" class="headerlink" title="后台管理"></a>后台管理</h2><h3 id="巩固知识点：vue、vue-router、vuex、axios、es6语法、less预处理、element-ui、php、mysql、webpack4"><a href="#巩固知识点：vue、vue-router、vuex、axios、es6语法、less预处理、element-ui、php、mysql、webpack4" class="headerlink" title="巩固知识点：vue、vue-router、vuex、axios、es6语法、less预处理、element-ui、php、mysql、webpack4"></a>巩固知识点：vue、vue-router、vuex、axios、es6语法、less预处理、element-ui、php、mysql、webpack4</h3>
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/02/Flatpickr/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -908,362 +1190,6 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/22/Webpack4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="菜菜君">
-      <meta itemprop="description" content="Learn once, write anywhere">
-      <meta itemprop="image" content="/images/caicaijun.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="菜菜君">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/10/22/Webpack4/" class="post-title-link" itemprop="url">Webpack4</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-22 11:23:06" itemprop="dateCreated datePublished" datetime="2019-10-22T11:23:06+08:00">2019-10-22</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-25 18:15:17" itemprop="dateModified" datetime="2019-10-25T18:15:17+08:00">2019-10-25</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/webpack/" itemprop="url" rel="index"><span itemprop="name">webpack</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="webpack安装"><a href="#webpack安装" class="headerlink" title="webpack安装"></a>webpack安装</h3><p>1、因为webpack基于node，所以首先安装node；npm是node的工具<br>node是否安装成功：打开终端快捷键（window+R）cmd，输入node -v查看node版本号，输入npm -v 查看npm包管理工具版本号</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># https://nodejs.org/en/</span><br></pre></td></tr></table></figure>
-
-<p>2、全局安装webpack</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i webpack webpack-cli -g</span><br></pre></td></tr></table></figure>
-
-<p>是否安装成功：打开终端快捷键（window+R）cmd，输入webpack -v查看webpack版本号<br>3、项目内安装webpack</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i webpack webpack-cli -D</span><br></pre></td></tr></table></figure>
-
-<p>是否安装成功：进入安装目录下打开终端快捷键（按住Shift+鼠标右击）cmd，输入npx webpack -v查看webpack版本号</p>
-<h3 id="什么是webpack？"><a href="#什么是webpack？" class="headerlink" title="什么是webpack？"></a>什么是webpack？</h3><ul>
-<li>webpack是模块化打包工具</li>
-</ul>
-<h3 id="使用webpack"><a href="#使用webpack" class="headerlink" title="使用webpack"></a>使用webpack</h3><ul>
-<li>cmd命令行使用</li>
-<li>node中直接使用</li>
-</ul>
-<h3 id="webpack翻译模块引入、导出方式"><a href="#webpack翻译模块引入、导出方式" class="headerlink" title="webpack翻译模块引入、导出方式"></a>webpack翻译模块引入、导出方式</h3><ul>
-<li>ES Moudule</li>
-<li>CommonJS</li>
-<li>CMD</li>
-<li>AMD</li>
-</ul>
-<h3 id="webpack默认配置文件与运行方式"><a href="#webpack默认配置文件与运行方式" class="headerlink" title="webpack默认配置文件与运行方式"></a>webpack默认配置文件与运行方式</h3><p>1、默认配置文件webpack.config.js<br>2、修改配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npx webpack --config webpack.dev.config.js</span><br></pre></td></tr></table></figure>
-
-<p>3、运行webpack方式：</p>
-<ul>
-<li>全局    webpack index.js</li>
-<li>项目里    npx webpack index.js</li>
-<li>package npm script<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// package.js</span><br><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;bundle&quot;: &quot;webpack&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">运行npm run bundle</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="entry、output基础配置"><a href="#entry、output基础配置" class="headerlink" title="entry、output基础配置"></a>entry、output基础配置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)<span class="comment">// node获取路径api </span></span><br><span class="line"><span class="comment">// 模块导出</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">	<span class="comment">// mode打包环境：默认production压缩代码；development不压缩代码</span></span><br><span class="line">    mode: <span class="string">'development'</span>,</span><br><span class="line">    <span class="comment">// 入口文件路径；默认输出文件名main</span></span><br><span class="line">    entry: &#123;</span><br><span class="line">        main: <span class="string">'./src/index.js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 入口文件输出路径</span></span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: <span class="string">'bundle.js'</span>,<span class="comment">// 输出文件名</span></span><br><span class="line">        path: path.resolve(__dirname, <span class="string">'dist'</span>)<span class="comment">// 输出文件路径</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="loader加载器"><a href="#loader加载器" class="headerlink" title="loader加载器"></a>loader加载器</h3><p>1、webpack只认识JS文件，其它文件类型不认识；需要loader告诉webpack模块打包<br>2、安装相应的loader</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    mode: <span class="string">'development'</span>,</span><br><span class="line">    entry: &#123;</span><br><span class="line">        main: <span class="string">'./src/index.js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// webpack不认识的类型文件都到module、rules规格找对应的loader</span></span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            <span class="comment">// &#123;</span></span><br><span class="line">            <span class="comment">//    test: /\.(jpg|png|gif)$/,</span></span><br><span class="line">            <span class="comment">//    use: &#123;</span></span><br><span class="line">            <span class="comment">//        loader: 'file-loader',</span></span><br><span class="line">            <span class="comment">//        options: &#123;</span></span><br><span class="line">            <span class="comment">//           name: '[name]_[hash].[ext]',</span></span><br><span class="line">            <span class="comment">//            outputPath: 'images/'</span></span><br><span class="line">            <span class="comment">//       &#125;</span></span><br><span class="line">            <span class="comment">//   &#125;</span></span><br><span class="line">            <span class="comment">// &#125;,</span></span><br><span class="line">            &#123;</span><br><span class="line">                test: <span class="regexp">/\.(jpg|png|gif)$/</span>,<span class="comment">// 文件类型</span></span><br><span class="line">                use: &#123;<span class="comment">// 使用loader</span></span><br><span class="line">                    loader: <span class="string">'url-loader'</span>,</span><br><span class="line">                    options: &#123;<span class="comment">// 配置参数</span></span><br><span class="line">                        name: <span class="string">'[name]_[hash].[ext]'</span>,</span><br><span class="line">                        outputPath: <span class="string">'images/'</span>,<span class="comment">// 输出到image目录</span></span><br><span class="line">                        limit: <span class="number">10240</span></span><br><span class="line">                        <span class="comment">// 不超过10240kb以base64格式引入图片，超过10240kb就把图片输出到dist/image目录下，再把路径赋给引用的地方；一般几kb大小的以base64格式引入，不用发起http请求获取图片</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                test: <span class="regexp">/\.(eot|ttf|svg)$/</span>,</span><br><span class="line">                use: &#123;</span><br><span class="line">                    loader: <span class="string">'file-loader'</span>,</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">             <span class="comment">// &#123;</span></span><br><span class="line">             <span class="comment">//     test: /\.css$/,</span></span><br><span class="line">             <span class="comment">//     use: ['style-loader', 'css-loader']</span></span><br><span class="line">             <span class="comment">// &#125;</span></span><br><span class="line">            &#123;</span><br><span class="line">                test: <span class="regexp">/\.less$/</span>,</span><br><span class="line">                use: [</span><br><span class="line">                    <span class="string">'style-loader'</span>,</span><br><span class="line">                    &#123;</span><br><span class="line">                        loader: <span class="string">'css-loader'</span>,</span><br><span class="line">                        options: &#123;</span><br><span class="line">                            importLoaders: <span class="number">2</span></span><br><span class="line">                            <span class="comment">// 多个样式文件嵌套使用，加载时，后面两个loader也要引用</span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;,</span><br><span class="line">                    <span class="string">'less-loader'</span>,</span><br><span class="line">                    <span class="string">'postcss-loader'</span></span><br><span class="line">                    <span class="comment">// 有些样式，不同浏览器需要加上厂商标志，使用postcss-loader,且需要安装autoprefixer插件；在root根路径加postcss.config.js配置文件</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">        path: path.resolve(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//postcss.config.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    plugins: [<span class="comment">// plugins插件</span></span><br><span class="line">        <span class="built_in">require</span>(<span class="string">'autoprefixer'</span>)<span class="comment">// 引入autoprefixer</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="plugins插件"><a href="#plugins插件" class="headerlink" title="plugins插件"></a>plugins插件</h3><p>1、plugin可以在webpack运行到某个时刻的时候，帮你做一些事情<br>2、htmlwebpackplugin会在打包结束后，自动生成一个html文件，并把打包生成的js文件自动引入到这个html文件中<br>3、cleanwebpackplugin第三方plugin（未被webpack纳入plugins）打包之前，清除dist目录下所有文件</p>
-<h3 id="sourceMap"><a href="#sourceMap" class="headerlink" title="sourceMap"></a>sourceMap</h3><p>sourceMap是一个映射关系，他知道dist打包代码出错了，映射到src对应的代码出错的位置；<br>1、source-map<br>报错会在dist目录生成.map文件<br>2、inline-source-map<br>inline会在出错的文件下面生成base64代码；不会生成.map文件<br>3、cheap-inline-sourceMap<br>cheap打包速度比较快；只提示多少行出错，不提示多少列出错；忽略第三方模块的报错映射，只映射业务代码<br>4、cheap-module-inline-source-map<br>module打包速度比较快；会映射第三方模块的报错<br>5、cheap-module-eval-source-map<br>eval打包速度最快；忽略很多，往往会有些遗漏问题</p>
-<p>mode:development时设置：devtool:cheap-module-eval-source-map<br>mode:production时设置：devtool:cheap-module-source-map</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">devtool: <span class="string">'none'</span></span><br><span class="line">devtool: <span class="string">'source-map'</span></span><br><span class="line">devtool: <span class="string">'cheap-module-eval-source-map'</span></span><br><span class="line">devtool: <span class="string">'cheap-module-source-map'</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="webpackDevServer"><a href="#webpackDevServer" class="headerlink" title="webpackDevServer"></a>webpackDevServer</h3><p>作用：提升开发效率</p>
-<p>1、watch：监听文件改变，需重新打包；要手动刷新浏览器才能看到修改的效果；不可以做Ajax调试<br>2、devServer：不仅会监听文件改变，重新打包；还会直接打开浏览器查看修改效果；可以做Ajax调试；没有把打包文件生成到dist目录，生成在内存中，提高打包效率（推荐使用）<br>3、webpackDevMiddleware：结合express、webpack-dev-middleware手动创建服务器</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">    contentBase: <span class="string">'./dist'</span>,</span><br><span class="line">    open: <span class="literal">true</span>,</span><br><span class="line">    port: <span class="number">8000</span>,</span><br><span class="line">    <span class="comment">// 跨域代理，实现Ajax异步请求</span></span><br><span class="line">    <span class="comment">// proxy: &#123;</span></span><br><span class="line">    <span class="comment">//     '/api': 'http://localhost:3000'</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="HMR"><a href="#HMR" class="headerlink" title="HMR"></a>HMR</h3><p>Hot Module Replacement：热模块更新</p>
-<p>1、只是css样式修改时，不要刷新页面（保存之前操作，更新样式文件）<br>2、因为css-loader内置HMR，所以不需要写module.hot.accept代码；如果是js文件需要HMR则需要写module.hot.accept代码</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">    contentBase: <span class="string">'./dist'</span>,</span><br><span class="line">    open: <span class="literal">true</span>,</span><br><span class="line">    port: <span class="number">8000</span>,</span><br><span class="line">    hot: <span class="literal">true</span>,</span><br><span class="line">    hotOnly: <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 引入webpack内置plugin插件</span></span><br><span class="line">plugins: [</span><br><span class="line">    <span class="keyword">new</span> webpack.HotModuleReplacementPlugin()</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<h3 id="Babel"><a href="#Babel" class="headerlink" title="Babel"></a>Babel</h3><p>Babel处理ES6语法<br>1、安装babel-loader和Babel核心库@babel/core；但这不将ES6语法转化ES5语法，只是将webpack和Babel之间建立桥梁</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i --save-dev babel-loader @babel/core</span><br></pre></td></tr></table></figure>
-
-<p>2、安装@babel/preset-env来将ES6语法转化为ES5语法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i @babel/preset-env --save-dev</span><br></pre></td></tr></table></figure>
-
-<p>3、转化为ES5语法后，可能有些老版本浏览器对新方法、属性不认识，这时候就需要安装@babel/polyfill做支持（写自己的业务可以使用polyfill；如果写ui组件库或类库时，那么polyfill会污染全局）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i --save @babel/polyfill</span><br></pre></td></tr></table></figure>
-
-<p>4、安装plugin-transform-runtime插件；以闭包形式引入或间接引入，不存在全局污染；可以避免像polyfill全局污染和preset问题（写ui组件库或类库时使用）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># npm i --save-dev @babel/plugin-transform-runtime</span><br><span class="line"># npm i --save @babel/runtime</span><br><span class="line"># npm i --save @babel/runtime-corejs2</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">    exclude: <span class="regexp">/node_modules/</span>,</span><br><span class="line">    loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">    options: &#123;</span><br><span class="line">        <span class="comment">// presets: [['@babel/preset-env', &#123;</span></span><br><span class="line">        <span class="comment">//     targets: &#123;</span></span><br><span class="line">        <span class="comment">//         chrome: '67'</span></span><br><span class="line">        <span class="comment">// 在chrome67版本本身支持新方法、属性就不需要注入需要的方法、属性</span></span><br><span class="line">        <span class="comment">//     &#125;,</span></span><br><span class="line">        <span class="comment">//     useBuiltIns: 'usage'// 根据业务代码注入</span></span><br><span class="line">        <span class="comment">// 安装@babel/polyfill设置useBuiltIns按需注入需要的方法、属性，减小打包后文件大小</span></span><br><span class="line">        <span class="comment">// &#125;]]</span></span><br><span class="line"></span><br><span class="line">        <span class="string">"plugins"</span>: [[<span class="string">'@babel/plugin-transform-runtime'</span>, &#123;</span><br><span class="line">            <span class="string">"corejs"</span>: <span class="number">2</span>,</span><br><span class="line">            <span class="string">"helpers"</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="string">"regenerator"</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="string">"useESModules"</span>: <span class="literal">false</span></span><br><span class="line">        &#125;]]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>5、提取Babel配置<br>在根目录新建.babelrc文件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"plugins"</span>: [</span><br><span class="line">        [</span><br><span class="line">            <span class="string">"@babel/plugin-transform-runtime"</span>,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">"corejs"</span>: <span class="number">2</span>,</span><br><span class="line">                <span class="string">"helpers"</span>: <span class="literal">true</span>,</span><br><span class="line">                <span class="string">"regenerator"</span>: <span class="literal">true</span>,</span><br><span class="line">                <span class="string">"useESModules"</span>: <span class="literal">false</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="配置执行顺序"><a href="#配置执行顺序" class="headerlink" title="配置执行顺序"></a>配置执行顺序</h3><ul>
-<li>从下往上，从右往左</li>
-</ul>
-<h3 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># https://webpack.js.org/api/</span><br></pre></td></tr></table></figure>
-
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/19/Nginx/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="菜菜君">
-      <meta itemprop="description" content="Learn once, write anywhere">
-      <meta itemprop="image" content="/images/caicaijun.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="菜菜君">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/10/19/Nginx/" class="post-title-link" itemprop="url">Nginx</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-19 17:26:33" itemprop="dateCreated datePublished" datetime="2019-10-19T17:26:33+08:00">2019-10-19</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-22 11:25:00" itemprop="dateModified" datetime="2019-10-22T11:25:00+08:00">2019-10-22</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/nginx/" itemprop="url" rel="index"><span itemprop="name">nginx</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/19/Node/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="菜菜君">
-      <meta itemprop="description" content="Learn once, write anywhere">
-      <meta itemprop="image" content="/images/caicaijun.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="菜菜君">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/10/19/Node/" class="post-title-link" itemprop="url">学习Nodejs</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-19 10:49:17" itemprop="dateCreated datePublished" datetime="2019-10-19T10:49:17+08:00">2019-10-19</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-27 11:43:18" itemprop="dateModified" datetime="2019-10-27T11:43:18+08:00">2019-10-27</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/node/" itemprop="url" rel="index"><span itemprop="name">node</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="写简单的web服务"><a href="#写简单的web服务" class="headerlink" title="写简单的web服务"></a>写简单的web服务</h3><p>1、是否安装node.js；打开cmd命令行输入node -v查看node版本，如果输出版本号表示已经安装node，否则未安装。<br>2、写server.js文件<br><img src="/images/1571451931942.png" alt="1571451931942"></p>
-<p>3、启动服务<br><img src="/images/1571452096194.png" alt="1571452096194"></p>
-<p>4、客户端浏览器请求服务器<br><img src="/images/1571452249348.png" alt="1571452249348"></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -1316,7 +1242,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1342,7 +1268,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
