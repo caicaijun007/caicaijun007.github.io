@@ -214,6 +214,150 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/23/Vue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="菜菜君">
+      <meta itemprop="description" content="Learn once, write anywhere">
+      <meta itemprop="image" content="/images/caicaijun.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜菜君">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/09/23/Vue/" class="post-title-link" itemprop="url">Vue全家桶</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-23 11:32:49" itemprop="dateCreated datePublished" datetime="2019-09-23T11:32:49+08:00">2019-09-23</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-20 09:58:01" itemprop="dateModified" datetime="2019-10-20T09:58:01+08:00">2019-10-20</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web前端/" itemprop="url" rel="index"><span itemprop="name">web前端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="重新巩固Vue全家桶，做宠物商城"><a href="#重新巩固Vue全家桶，做宠物商城" class="headerlink" title="重新巩固Vue全家桶，做宠物商城"></a>重新巩固Vue全家桶，做宠物商城</h2><h3 id="知识点：vue、vue-router、vuex、axios、es6、less、mint-ui、mui、php、mysql"><a href="#知识点：vue、vue-router、vuex、axios、es6、less、mint-ui、mui、php、mysql" class="headerlink" title="知识点：vue、vue-router、vuex、axios、es6、less、mint-ui、mui、php、mysql"></a>知识点：vue、vue-router、vuex、axios、es6、less、mint-ui、mui、php、mysql</h3><h4 id="1、全局安装vue-cli3-0脚手架工具"><a href="#1、全局安装vue-cli3-0脚手架工具" class="headerlink" title="1、全局安装vue-cli3.0脚手架工具"></a>1、全局安装vue-cli3.0脚手架工具</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm install -g @vue/cli</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、使用vue-cli脚手架创建vue项目"><a href="#2、使用vue-cli脚手架创建vue项目" class="headerlink" title="2、使用vue-cli脚手架创建vue项目"></a>2、使用vue-cli脚手架创建vue项目</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vue create pet</span><br></pre></td></tr></table></figure>
+
+<p>选择配置Babel、ESlint、Less，其它用到再手动安装，避免脚手架创建项目时生成额外的文件或配置</p>
+<h4 id="3、目录结构划分"><a href="#3、目录结构划分" class="headerlink" title="3、目录结构划分"></a>3、目录结构划分</h4><ul>
+<li>assets            资源目录</li>
+<li>components           基础组件、公共组件</li>
+<li>configs             配置文件</li>
+<li>router            路由</li>
+<li>store                store</li>
+<li>utils                 公共方法</li>
+<li>views                    业务逻辑页面</li>
+</ul>
+<h4 id="4、引入mui和安装mint-ui"><a href="#4、引入mui和安装mint-ui" class="headerlink" title="4、引入mui和安装mint-ui"></a>4、引入mui和安装mint-ui</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i mint-ui --save</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> MintUI <span class="keyword">from</span> <span class="string">'mint-ui'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'mint-ui/lib/style.css'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'../lib/css/mui.min.css'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'../lib/css/icons-extra.css'</span></span><br><span class="line"></span><br><span class="line">Vue.use(MintUI)</span><br></pre></td></tr></table></figure>
+
+<h4 id="5、安装vue-router、vuex和axios"><a href="#5、安装vue-router、vuex和axios" class="headerlink" title="5、安装vue-router、vuex和axios"></a>5、安装vue-router、vuex和axios</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i vue-router vuex axios --save</span><br></pre></td></tr></table></figure>
+
+<p>安装完成再把router、store基本使用写好</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// router/index.js</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Home = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../views/home/Home'</span>)</span><br><span class="line"><span class="keyword">const</span> Category = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../views/category/Category'</span>)</span><br><span class="line"><span class="keyword">const</span> Shopcar = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../views/shopcar/Shopcar'</span>)</span><br><span class="line"><span class="keyword">const</span> Profile = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../views/profile/Profile'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">    &#123;</span><br><span class="line">        path: <span class="string">''</span>,</span><br><span class="line">        redirect: <span class="string">'/home'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        path: <span class="string">'/home'</span>,</span><br><span class="line">        component: Home</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        path: <span class="string">'/category'</span>,</span><br><span class="line">        component: Category</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        path: <span class="string">'/shopcar'</span>,</span><br><span class="line">        component: Shopcar</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        path: <span class="string">'/profile'</span>,</span><br><span class="line">        component: Profile</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line">    </span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">    linkActiveClass: <span class="string">'mui-active'</span>,</span><br><span class="line">    mode: <span class="string">'history'</span>,</span><br><span class="line">    routes</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//store/index.js</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">	state: &#123;&#125;,</span><br><span class="line">	mutations: &#123;&#125;,</span><br><span class="line">	getters:&#123;&#125;,</span><br><span class="line">	actions:&#123;&#125;,</span><br><span class="line">	modules:&#123;&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//utils/request.js</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="6、默认样式处理"><a href="#6、默认样式处理" class="headerlink" title="6、默认样式处理"></a>6、默认样式处理</h4><p>定义常用样式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">default</span><span class="selector-class">.less</span></span><br><span class="line">@colorE: #fff;</span><br><span class="line">...</span><br><span class="line">@fontA: 12px;</span><br><span class="line">...</span><br><span class="line">@px2: 2px;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>默认样式处理</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> <span class="string">'./default.less'</span>;</span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">font-family</span>: Microsoft YaHei<span class="string">", "</span>微软雅黑<span class="string">";</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">a &#123;</span></span><br><span class="line"><span class="string">    color: @colorA;</span></span><br><span class="line"><span class="string">    text-decoration: none;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">ul,li &#123;</span></span><br><span class="line"><span class="string">    list-style: none;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">/* 清除浮动*/</span></span><br><span class="line"><span class="string">.clearfix &#123;</span></span><br><span class="line"><span class="string">    zoom: 1;</span></span><br><span class="line"><span class="string">    &amp;::after&#123;</span></span><br><span class="line"><span class="string">        clear: both;</span></span><br><span class="line"><span class="string">        content: ' ';</span></span><br><span class="line"><span class="string">        display: block;</span></span><br><span class="line"><span class="string">        width: 0;</span></span><br><span class="line"><span class="string">        height: 0;</span></span><br><span class="line"><span class="string">        visibility: hidden;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="7、封装TabBar组件"><a href="#7、封装TabBar组件" class="headerlink" title="7、封装TabBar组件"></a>7、封装TabBar组件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- router-link、to属性的使用</span><br></pre></td></tr></table></figure>
+
+<h4 id="8、封装NavBar组件"><a href="#8、封装NavBar组件" class="headerlink" title="8、封装NavBar组件"></a>8、封装NavBar组件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- props父组件向子组件传值、slot插槽、v-bind值绑定、v-show、v-on事件监听</span><br><span class="line">- $router.go(-1)返回</span><br></pre></td></tr></table></figure>
+
+<h4 id="9、APP主页"><a href="#9、APP主页" class="headerlink" title="9、APP主页"></a>9、APP主页</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 导入TabBar、NavBar组件</span><br><span class="line">- router-view和keep-alive的exclude属性的使用</span><br></pre></td></tr></table></figure>
+
+<h4 id="10、封装Swiper组件"><a href="#10、封装Swiper组件" class="headerlink" title="10、封装Swiper组件"></a>10、封装Swiper组件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- v-if、v-else、v-for、v-bind值绑定、v-on事件监听</span><br><span class="line">- 事件修饰符prevent、props父组件向子组件传值</span><br><span class="line">- this.$router.push(&#123;name: &apos;&apos;, params:&#123;&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="11、封装Grid组件"><a href="#11、封装Grid组件" class="headerlink" title="11、封装Grid组件"></a>11、封装Grid组件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- v-for、v-bind值绑定、v-on事件监听、事件修饰符prevent</span><br><span class="line">- Mustache语法&#123;&#123;&#125;&#125;、props父组件向子组件传值</span><br><span class="line">- this.$router.push(&#123;name: &apos;&apos;, params:&#123;&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="12、Home主页"><a href="#12、Home主页" class="headerlink" title="12、Home主页"></a>12、Home主页</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- 导入Swiper、Grid组件</span><br><span class="line">- 导入封装的Request异步请求方法</span><br><span class="line">- 在created生命周期函数一次性请求所有数据</span><br><span class="line">- 父组件向之组件传值使用v-bind值绑定</span><br><span class="line">- 详情页跳转this.$router.push(&#123;name: &apos;&apos;, params:&#123;&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="13、Category分类"><a href="#13、Category分类" class="headerlink" title="13、Category分类"></a>13、Category分类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- 导入封装的Request异步请求方法</span><br><span class="line">- axios请求data数据方法传递参数为分类ID、当前页数、每页总条数、分类数组</span><br><span class="line">- 在created生命周期函数一次性请求所有数据</span><br><span class="line">- v-for、v-bind值绑定、v-on事件监听、绑定class属性值、v-show、Mustache语法&#123;&#123;&#125;&#125;</span><br><span class="line">- 获取路由参数this.$route.params.参数名</span><br></pre></td></tr></table></figure>
+
+<h4 id="14、封装NumBox组件"><a href="#14、封装NumBox组件" class="headerlink" title="14、封装NumBox组件"></a>14、封装NumBox组件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- v-bind值绑定、v-on事件监听、ref属性值</span><br><span class="line">- props父组件向子组件传值、$emit(&apos;方法名&apos;,  参数)子组件向父组件传值</span><br><span class="line">- store的state保存shopcar；mutations定义加入购物车保存状态方法、更新购物车状态发方法</span><br><span class="line">- 商品数目改变调用$store.commit(&apos;方法名&apos;, 参数)</span><br><span class="line">- 获取input输入框当前value值this.$refs.numBox.value</span><br><span class="line">- 定义商品数目增加或减少方法；判断最大值、最小值</span><br></pre></td></tr></table></figure>
+
+<h4 id="15、封装Comment组件"><a href="#15、封装Comment组件" class="headerlink" title="15、封装Comment组件"></a>15、封装Comment组件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- v-for、v-bind值绑定、v-on事件监听、Mustache语法&#123;&#123;&#125;&#125;、v-model双向数据绑定</span><br><span class="line">- 导入封装的Request异步请求方法；get方法获取评论；post发表评论；注意this指向问题</span><br><span class="line">- 导入公共方法Utilts.dateFormate()时间格式化方法</span><br><span class="line">- props父组件向子组件传值</span><br></pre></td></tr></table></figure>
+
+<h4 id="16、Shopcar购物车"><a href="#16、Shopcar购物车" class="headerlink" title="16、Shopcar购物车"></a>16、Shopcar购物车</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- v-for、:src属性值绑定、@change事件监听、@click.prevent事件修饰符</span><br><span class="line">- Mustache语法&#123;&#123;&#125;&#125;、v-model双向数据绑定</span><br><span class="line">- 获取购物车状态$store.state.shopcar</span><br><span class="line">- 从购物车中删除商品、切换商品选购状态调用$store.commit(&apos;方法名&apos;, 参数)</span><br><span class="line">- 获取store里定义的计算属性$store.getters</span><br></pre></td></tr></table></figure>
+
+<h4 id="17、Profile我的"><a href="#17、Profile我的" class="headerlink" title="17、Profile我的"></a>17、Profile我的</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- v-for、:src属性值绑定、@click事件监听、@click.prevent事件修饰符、Mustache语法&#123;&#123;&#125;&#125;</span><br><span class="line">- this.$router.push(&quot;路由地址&quot;)</span><br><span class="line">- this.$router.push(&#123; name: &apos;&apos;, params: &#123; &#125; &#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="项目链接：https-github-com-caicaijun007-pet"><a href="#项目链接：https-github-com-caicaijun007-pet" class="headerlink" title="项目链接：https://github.com/caicaijun007/pet"></a>项目链接：<a href="https://github.com/caicaijun007/pet" target="_blank" rel="noopener">https://github.com/caicaijun007/pet</a></h3>
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/21/Manager/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1094,7 +1238,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
