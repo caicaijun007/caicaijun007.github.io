@@ -52,7 +52,7 @@
 </script>
 
   <meta name="description" content="Learn once, write anywhere">
-<meta name="keywords" content="caicaijun007,IT Man,IT guy,react,vue,es6,antd,element-ui,php,mysql">
+<meta name="keywords" content="caicaijun007,caicaijun,菜菜君,IT Man,IT guy,web前端,react,vue,微信小程序,jQuery,JavaScript,es6,antd,Ant Design,element-ui,vant,mint-ui,muse-ui,mui,Iconfont,html5,css3,less,php,mysql">
 <meta property="og:type" content="website">
 <meta property="og:title" content="菜菜君">
 <meta property="og:url" content="http://yoursite.com/page/2/index.html">
@@ -209,6 +209,201 @@
           <div id="content" class="content">
             
   <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/03/transition/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="菜菜君">
+      <meta itemprop="description" content="Learn once, write anywhere">
+      <meta itemprop="image" content="/images/caicaijun.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜菜君">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/12/03/transition/" class="post-title-link" itemprop="url">简单使用transition实现小动画</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-03 22:40:09 / 修改时间：22:56:05" itemprop="dateCreated datePublished" datetime="2019-12-03T22:40:09+08:00">2019-12-03</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web前端/" itemprop="url" rel="index"><span itemprop="name">web前端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="vue项目中使用小小动画"><a href="#vue项目中使用小小动画" class="headerlink" title="vue项目中使用小小动画"></a>vue项目中使用小小动画</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// template</span><br><span class="line">&lt;div class=&quot;navigation&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;banner-center&quot;&gt;</span><br><span class="line">        &lt;img</span><br><span class="line">          v-for=&quot;item of neewsList&quot;</span><br><span class="line">          :key=&quot;item.id&quot;</span><br><span class="line">          :class=&quot;item.classMark&quot;</span><br><span class="line">          :src=&quot;item.img&quot;</span><br><span class="line">          width=&quot;260px&quot;</span><br><span class="line">          alt</span><br><span class="line">          @click=&quot;goNews(item.id)&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// script</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'News'</span>,</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">    	newsList: [</span><br><span class="line">    		&#123;</span><br><span class="line">    			id: <span class="number">1</span>,</span><br><span class="line">    			img: <span class="built_in">require</span>(<span class="string">'@/assets/images/banner-center-one.png'</span>),</span><br><span class="line">    			classMark: <span class="string">'banner-center-one'</span></span><br><span class="line">    		&#125;,</span><br><span class="line">    		&#123;</span><br><span class="line">    			id: <span class="number">2</span>,</span><br><span class="line">    			img: <span class="built_in">require</span>(<span class="string">'@/assets/images/banner-center-two.png'</span>),</span><br><span class="line">    			classMark: <span class="string">'banner-center-two'</span></span><br><span class="line">    		&#125;</span><br><span class="line">    	]</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;,</span><br><span class="line">   created() &#123;</span><br><span class="line">   		your code</span><br><span class="line">   &#125;,</span><br><span class="line">   mounted() &#123;</span><br><span class="line">   		your code</span><br><span class="line">   &#125;,</span><br><span class="line">   methods:&#123;</span><br><span class="line">   		goNews(id) &#123;</span><br><span class="line">   			<span class="keyword">this</span>.$router.push(&#123; <span class="attr">name</span>: <span class="string">'news'</span>, <span class="attr">query</span>: &#123;id&#125;&#125;)</span><br><span class="line">   		&#125;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* style */</span></span><br><span class="line"><span class="selector-class">.navigation</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">520px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>(@/assets/bg.png) no-repeat;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.navigation</span> &gt; <span class="selector-class">.banner-center</span> &#123;</span><br><span class="line">  <span class="attribute">padding-left</span>: <span class="number">12vw</span>;</span><br><span class="line">  <span class="attribute">padding-top</span>: <span class="number">6vh</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.navigation</span> &gt; <span class="selector-class">.banner-center</span> &gt; <span class="selector-class">.banner-center-one</span>, <span class="selector-class">.navigation</span> &gt; <span class="selector-class">.banner-center</span> &gt; <span class="selector-class">.banner-center-two</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">4px</span> solid <span class="built_in">rgba</span>(39, 138, 250, 0.5);</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">cursor</span>: pointer;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.navigation</span> &gt; <span class="selector-class">.banner-center</span> &gt; <span class="selector-class">.banner-center-two</span> &#123;</span><br><span class="line">  <span class="attribute">margin-left</span>: <span class="number">16px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.navigation</span> &gt; <span class="selector-class">.banner-center</span> &gt; <span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">transition</span>: all <span class="number">0.8s</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.navigation</span> &gt; <span class="selector-class">.banner-center</span> &gt; <span class="selector-class">.banner-center-one</span><span class="selector-pseudo">:hover</span>, <span class="selector-class">.navigation</span> &gt; <span class="selector-class">.banner-center</span> &gt; <span class="selector-class">.banner-center-two</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-transform</span>: <span class="built_in">translateY</span>(-20px);</span><br><span class="line">  <span class="attribute">-moz-transform</span>: <span class="built_in">translateY</span>(-20px);</span><br><span class="line">  <span class="attribute">-ms-transform</span>: <span class="built_in">translateY</span>(-20px);</span><br><span class="line">  <span class="attribute">-o-transform</span>: <span class="built_in">translateY</span>(-20px);</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-20px);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/02/Form/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="菜菜君">
+      <meta itemprop="description" content="Learn once, write anywhere">
+      <meta itemprop="image" content="/images/caicaijun.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜菜君">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/12/02/Form/" class="post-title-link" itemprop="url">关于Form表单提交数据格式</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-02 11:59:05 / 修改时间：14:33:56" itemprop="dateCreated datePublished" datetime="2019-12-02T11:59:05+08:00">2019-12-02</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web前端/" itemprop="url" rel="index"><span itemprop="name">web前端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Form表单POST提交的四种数据格式"><a href="#Form表单POST提交的四种数据格式" class="headerlink" title="Form表单POST提交的四种数据格式"></a>Form表单POST提交的四种数据格式</h3><p>1、application/x-www-form-urlencoded （默认选择方式）</p>
+<ul>
+<li>Content-Type 指定为 application/x-www-form-urlencoded</li>
+<li>提交的数据按照 key=value&amp;key1=value1 的方式进行编码</li>
+<li>key和value都进行了URL转码</li>
+</ul>
+<p>2、multipart/form-data</p>
+<ul>
+<li>使用表单上传文件时，必须让 <form> 表单的 enctype 属性值等于 multipart/form-data</form></li>
+</ul>
+<p>3、application/json</p>
+<ul>
+<li>现在越来越多的人把它作为请求头，用来告诉服务端消息主体是序列化后的JSON字符串。</li>
+<li>由于JSON规范的流行，除了低版本IE之外的各大浏览器都原生支持JSON.stringify，服务端语言也都有处理JSON的函数，使用JSON不会遇上什么麻烦。这种方案，可以方便的提交复杂的结构化数据，特别适合RESTful的接口。</li>
+</ul>
+<p>4、text/xml</p>
+<ul>
+<li>它是一种使用HTTP作为传输协议，XML作为编码方式的远程调用规范</li>
+</ul>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
         <article itemscope itemtype="http://schema.org/Article">
   
   
@@ -991,184 +1186,6 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/23/ionic/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="菜菜君">
-      <meta itemprop="description" content="Learn once, write anywhere">
-      <meta itemprop="image" content="/images/caicaijun.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="菜菜君">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/11/23/ionic/" class="post-title-link" itemprop="url">学习ionic</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-11-23 14:19:14" itemprop="dateCreated datePublished" datetime="2019-11-23T14:19:14+08:00">2019-11-23</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-24 13:33:05" itemprop="dateModified" datetime="2019-11-24T13:33:05+08:00">2019-11-24</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web前端/" itemprop="url" rel="index"><span itemprop="name">web前端</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># https://www.runoob.com/ionic/ionic-tutorial.html</span><br><span class="line"># https://github.com/ionic-team/ionic</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/15/koa/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="菜菜君">
-      <meta itemprop="description" content="Learn once, write anywhere">
-      <meta itemprop="image" content="/images/caicaijun.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="菜菜君">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/11/15/koa/" class="post-title-link" itemprop="url">学习koa</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-11-15 23:43:37 / 修改时间：23:45:27" itemprop="dateCreated datePublished" datetime="2019-11-15T23:43:37+08:00">2019-11-15</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web前端/" itemprop="url" rel="index"><span itemprop="name">web前端</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="基于node-js平台的下一代web开发框架"><a href="#基于node-js平台的下一代web开发框架" class="headerlink" title="基于node.js平台的下一代web开发框架"></a>基于node.js平台的下一代web开发框架</h2><h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># https://www.koajs.com.cn/</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -1221,7 +1238,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1247,7 +1264,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-count">45</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
