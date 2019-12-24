@@ -51,18 +51,18 @@
   };
 </script>
 
-  <meta name="description" content="微信小程序项目开发中">
+  <meta name="description" content="微信小程序项目开发中1、简单使用地图 123&amp;lt;map id=&quot;map&quot; longitude=&quot;经度&quot; latitude=&quot;纬度&quot; show-location scale=&quot;14&quot; class=&quot;addr&quot;&amp;gt;&amp;lt;/map&amp;gt;&amp;lt;text catchtap=&quot;goLocation&quot; data-latitude=&apos;纬度&apos; data-longitude=&apos;经度&apos; data-addr">
 <meta name="keywords" content="微信小程序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微信小程序项目总结">
 <meta property="og:url" content="http://yoursite.com/2019/12/19/wx/index.html">
 <meta property="og:site_name" content="菜菜君">
-<meta property="og:description" content="微信小程序项目开发中">
+<meta property="og:description" content="微信小程序项目开发中1、简单使用地图 123&amp;lt;map id=&quot;map&quot; longitude=&quot;经度&quot; latitude=&quot;纬度&quot; show-location scale=&quot;14&quot; class=&quot;addr&quot;&amp;gt;&amp;lt;/map&amp;gt;&amp;lt;text catchtap=&quot;goLocation&quot; data-latitude=&apos;纬度&apos; data-longitude=&apos;经度&apos; data-addr">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-19T15:16:34.879Z">
+<meta property="og:updated_time" content="2019-12-24T15:17:33.130Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信小程序项目总结">
-<meta name="twitter:description" content="微信小程序项目开发中">
+<meta name="twitter:description" content="微信小程序项目开发中1、简单使用地图 123&amp;lt;map id=&quot;map&quot; longitude=&quot;经度&quot; latitude=&quot;纬度&quot; show-location scale=&quot;14&quot; class=&quot;addr&quot;&amp;gt;&amp;lt;/map&amp;gt;&amp;lt;text catchtap=&quot;goLocation&quot; data-latitude=&apos;纬度&apos; data-longitude=&apos;经度&apos; data-addr">
   <link rel="canonical" href="http://yoursite.com/2019/12/19/wx/">
 
 
@@ -244,11 +244,19 @@
                 
               
 
-              <time title="创建时间：2019-12-19 22:59:07 / 修改时间：23:16:34" itemprop="dateCreated datePublished" datetime="2019-12-19T22:59:07+08:00">2019-12-19</time>
+              <time title="创建时间：2019-12-19 22:59:07" itemprop="dateCreated datePublished" datetime="2019-12-19T22:59:07+08:00">2019-12-19</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-24 23:17:33" itemprop="dateModified" datetime="2019-12-24T23:17:33+08:00">2019-12-24</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -276,7 +284,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="微信小程序项目开发中"><a href="#微信小程序项目开发中" class="headerlink" title="微信小程序项目开发中"></a>微信小程序项目开发中</h3>
+        <h3 id="微信小程序项目开发中"><a href="#微信小程序项目开发中" class="headerlink" title="微信小程序项目开发中"></a>微信小程序项目开发中</h3><p>1、简单使用地图</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">map</span> <span class="attr">id</span>=<span class="string">"map"</span> <span class="attr">longitude</span>=<span class="string">"经度"</span> <span class="attr">latitude</span>=<span class="string">"纬度"</span> <span class="attr">show-location</span> <span class="attr">scale</span>=<span class="string">"14"</span> <span class="attr">class</span>=<span class="string">"addr"</span>&gt;</span><span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">text</span> <span class="attr">catchtap</span>=<span class="string">"goLocation"</span> <span class="attr">data-latitude</span>=<span class="string">'纬度'</span> <span class="attr">data-longitude</span>=<span class="string">'经度'</span> <span class="attr">data-address</span>=<span class="string">'地址'</span> &gt;</span>导航<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">goLocation(e) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'纬度'</span>, e.currentTarget.dataset.latitude)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'经度'</span>, e.currentTarget.dataset.longitude)</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'地址'</span>, e.currentTarget.dataset.address)</span><br><span class="line">    wx.getLocation(&#123;</span><br><span class="line">        type: <span class="string">'gcj02'</span>,</span><br><span class="line">        success(res) &#123;</span><br><span class="line">            <span class="keyword">const</span> latitude = res.latitude</span><br><span class="line">            <span class="keyword">const</span> longitude = res.longitude</span><br><span class="line">            wx.openLocation(&#123;</span><br><span class="line">                latitude,</span><br><span class="line">                longitude,</span><br><span class="line">                scale: <span class="number">14</span></span><br><span class="line">            &#125;)</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>2、分享<br>…</p>
+<p>3、授权<br>…</p>
+<p>4、修改button样式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">style</span>=<span class="string">"background-color: #ffcc00; color: #fff; border-radius: 98rpx; width: 60%"</span> <span class="attr">hover-class</span>=<span class="string">"background-color: #00ff00; color: #000;"</span> <span class="attr">bindtap</span>=<span class="string">"quit"</span>&gt;</span>确定<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>5、实现文本上标、下标</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">text</span>&gt;</span>面积：1000m<span class="tag">&lt;<span class="name">text</span> <span class="attr">style</span>=<span class="string">"font-size: 10px;vertical-align: text-top;"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">text</span>&gt;</span><span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">text</span>&gt;</span>XX：10<span class="tag">&lt;<span class="name">text</span> <span class="attr">style</span>=<span class="string">"font-size: 10px;vertical-align: text-bottom;"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">text</span>&gt;</span><span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>6、使用npm包<br>…</p>
+<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># https://developers.weixin.qq.com/miniprogram/dev/framework/</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -358,7 +380,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#微信小程序项目开发中"><span class="nav-number">1.</span> <span class="nav-text">微信小程序项目开发中</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#微信小程序项目开发中"><span class="nav-number">1.</span> <span class="nav-text">微信小程序项目开发中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考："><span class="nav-number">2.</span> <span class="nav-text">参考：</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -402,7 +424,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
