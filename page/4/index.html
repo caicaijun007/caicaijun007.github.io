@@ -214,6 +214,110 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/Network/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="菜菜君">
+      <meta itemprop="description" content="Learn once, write anywhere">
+      <meta itemprop="image" content="/images/caicaijun.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜菜君">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/11/08/Network/" class="post-title-link" itemprop="url">vue项目中检测网络状态Network</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-08 16:30:53" itemprop="dateCreated datePublished" datetime="2019-11-08T16:30:53+08:00">2019-11-08</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-12 11:14:32" itemprop="dateModified" datetime="2019-11-12T11:14:32+08:00">2019-11-12</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/network/" itemprop="url" rel="index"><span itemprop="name">network</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="检测当前环境的网络状态"><a href="#检测当前环境的网络状态" class="headerlink" title="检测当前环境的网络状态"></a>检测当前环境的网络状态</h2><p>1、在utils目录下新建network.js文件默认导出公共方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params">type, handler</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.addEventListener) &#123;</span><br><span class="line">    <span class="built_in">window</span>.addEventListener(type, handler, <span class="literal">false</span>)</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.attachEvent) &#123;</span><br><span class="line">    <span class="built_in">window</span>.attachEvent(<span class="string">'on'</span> + type, handler)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">window</span>[<span class="string">'on'</span> + type] = handler</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2、在main.js中路由导航守卫里检测状态</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 在线</span></span><br><span class="line">  network(<span class="string">'online'</span>, () =&gt; &#123;</span><br><span class="line">  	<span class="comment">// 本地保存状态</span></span><br><span class="line">    localStorage.setItem(<span class="string">'_network_status'</span>, <span class="built_in">JSON</span>.stringify(<span class="string">'online'</span>))</span><br><span class="line">    <span class="comment">// 强制页面刷新</span></span><br><span class="line">    <span class="built_in">window</span>.location.reload()</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// 离线</span></span><br><span class="line">  network(<span class="string">'offline'</span>, () =&gt; &#123;</span><br><span class="line">  	<span class="comment">// 本地保存状态</span></span><br><span class="line">    localStorage.setItem(<span class="string">'_network_status'</span>, <span class="built_in">JSON</span>.stringify(<span class="string">'offline'</span>))</span><br><span class="line">    <span class="comment">// 强制页面刷新</span></span><br><span class="line">    <span class="built_in">window</span>.location.reload()</span><br><span class="line">  &#125;)</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3、需要网络提示页面，这边使用element-ui的dialog弹窗嵌套vue组件</p>
+<p>4、在BaseLayout基本页引入上面的网络提示页面，传对应显示模态框的布尔值和接受改变模态框状态的事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 组件挂载时判断network状态，改变网络提示页面的显示</span></span><br><span class="line">mounted () &#123;</span><br><span class="line">  <span class="keyword">this</span>.isError = localStorage.getItem(<span class="string">'_network_status'</span>)</span><br><span class="line">    ? <span class="built_in">JSON</span>.parse(localStorage.getItem(<span class="string">'_network_status'</span>)) === <span class="string">'offline'</span></span><br><span class="line">    : <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="强制页面刷新太暴力，使用比较温顺的方法"><a href="#强制页面刷新太暴力，使用比较温顺的方法" class="headerlink" title="强制页面刷新太暴力，使用比较温顺的方法"></a>强制页面刷新太暴力，使用比较温顺的方法</h3><p>使用vuex保存状态</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// network.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params">type, handler, element = window</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (element.addEventListener) &#123;</span><br><span class="line">    element.addEventListener(type, handler, <span class="literal">false</span>)</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (element.attachEvent) &#123;</span><br><span class="line">    element.attachEvent(<span class="string">'on'</span> + type, handler)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    element[<span class="string">'on'</span> + type] = handler</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// store.js</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> error = localStorage.getItem(<span class="string">'_network_status'</span>)</span><br><span class="line">  ? <span class="built_in">JSON</span>.parse(localStorage.getItem(<span class="string">'_network_status'</span>)) === <span class="string">'offline'</span></span><br><span class="line">  : <span class="literal">false</span></span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    error</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    changeErrorStatus (state, status) &#123;</span><br><span class="line">      state.error = status</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  getters: &#123;&#125;,</span><br><span class="line">  actions: &#123;&#125;,</span><br><span class="line">  modules: &#123;&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'./store/store'</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"><span class="keyword">import</span> network <span class="keyword">from</span> <span class="string">'../src/utils/network'</span></span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  network(<span class="string">'online'</span>, () =&gt; &#123;</span><br><span class="line">    localStorage.setItem(<span class="string">'_network_status'</span>, <span class="built_in">JSON</span>.stringify(<span class="string">'online'</span>))</span><br><span class="line">    store.commit(<span class="string">'changeErrorStatus'</span>, <span class="literal">false</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">  network(<span class="string">'offline'</span>, () =&gt; &#123;</span><br><span class="line">    localStorage.setItem(<span class="string">'_network_status'</span>, <span class="built_in">JSON</span>.stringify(<span class="string">'offline'</span>))</span><br><span class="line">    store.commit(<span class="string">'changeErrorStatus'</span>, <span class="literal">true</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">  ...</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  store,</span><br><span class="line">  router,</span><br><span class="line">  render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">&#125;).$mount(<span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/vueLint/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1077,102 +1181,11 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/nvm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="菜菜君">
-      <meta itemprop="description" content="Learn once, write anywhere">
-      <meta itemprop="image" content="/images/caicaijun.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="菜菜君">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/10/27/nvm/" class="post-title-link" itemprop="url">安装nvm进行node.js版本管理</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-27 11:18:22 / 修改时间：11:32:11" itemprop="dateCreated datePublished" datetime="2019-10-27T11:18:22+08:00">2019-10-27</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/node/" itemprop="url" rel="index"><span itemprop="name">node</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="nvm常用命令"><a href="#nvm常用命令" class="headerlink" title="nvm常用命令"></a>nvm常用命令</h3><ul>
-<li>nvm list（查看当前安装的node.js所有版本）</li>
-<li>nvm install 版本号（安装指定版本的node.js）</li>
-<li>nvm uninstall 版本号（卸载指定版本的node.js）</li>
-<li>nvm use 版本号（选择指定版本号的node.js）</li>
-</ul>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1220,7 +1233,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
