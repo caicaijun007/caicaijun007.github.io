@@ -214,6 +214,111 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/12/Vant/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="菜菜君">
+      <meta itemprop="description" content="Learn once, write anywhere">
+      <meta itemprop="image" content="/images/caicaijun.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜菜君">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/11/12/Vant/" class="post-title-link" itemprop="url">在vue中使用Vant框架</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-12 19:51:10" itemprop="dateCreated datePublished" datetime="2019-11-12T19:51:10+08:00">2019-11-12</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-17 23:18:46" itemprop="dateModified" datetime="2019-11-17T23:18:46+08:00">2019-11-17</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web前端/" itemprop="url" rel="index"><span itemprop="name">web前端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="在vue项目中引用vant-UI框架"><a href="#在vue项目中引用vant-UI框架" class="headerlink" title="在vue项目中引用vant UI框架"></a>在vue项目中引用vant UI框架</h3><p>1、安装vant插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i vant -S</span><br></pre></td></tr></table></figure>
+
+<p>2、全局引入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vant <span class="keyword">from</span> <span class="string">'vant'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'vant/lib/index.css'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vant)</span><br></pre></td></tr></table></figure>
+
+<p>注意：全局引入不要安装babel-plugin-import且在babel.config.js配置插件</p>
+<p>3、按需引入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># npm i babel-plugin-import -D</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// babel.config.js</span></span><br><span class="line">plugins: [</span><br><span class="line">    [<span class="string">'import'</span>, &#123;</span><br><span class="line">      libraryName: <span class="string">'vant'</span>,</span><br><span class="line">      libraryDirectory: <span class="string">'es'</span>,</span><br><span class="line">      style: <span class="literal">true</span></span><br><span class="line">    &#125;, <span class="string">'vant'</span>]</span><br><span class="line">]</span><br><span class="line"><span class="comment">// 组件中按需引入</span></span><br><span class="line">&lt;van-button type=<span class="string">"default"</span>&gt;默认按钮&lt;<span class="regexp">/van-button&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">import &#123; Button &#125; from 'vant'</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">Vue.use(Button)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># https://youzan.github.io/vant/#/zh-CN/intro</span><br><span class="line"># https://youzan.github.io/vant-weapp/#/intro</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/Network/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1061,126 +1166,6 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/Git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="菜菜君">
-      <meta itemprop="description" content="Learn once, write anywhere">
-      <meta itemprop="image" content="/images/caicaijun.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="菜菜君">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/10/27/Git/" class="post-title-link" itemprop="url">总结Git基本操作</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-27 11:43:08 / 修改时间：12:20:52" itemprop="dateCreated datePublished" datetime="2019-10-27T11:43:08+08:00">2019-10-27</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="clone克隆"><a href="#clone克隆" class="headerlink" title="clone克隆"></a>clone克隆</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git clone 远程仓库地址</span><br></pre></td></tr></table></figure>
-
-<h3 id="status查看状态"><a href="#status查看状态" class="headerlink" title="status查看状态"></a>status查看状态</h3><p>ls列出所有文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git status</span><br></pre></td></tr></table></figure>
-
-<h3 id="add添加"><a href="#add添加" class="headerlink" title="add添加"></a>add添加</h3><p>添加所有新增或修改文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git add .</span><br></pre></td></tr></table></figure>
-
-<p>添加指定文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git add hello.html</span><br></pre></td></tr></table></figure>
-
-<h3 id="commit提交"><a href="#commit提交" class="headerlink" title="commit提交"></a>commit提交</h3><p>commit提交，git管理该文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git commit -m &apos;添加hello.html文件&apos;</span><br></pre></td></tr></table></figure>
-
-<h3 id="remote远程版本分支"><a href="#remote远程版本分支" class="headerlink" title="remote远程版本分支"></a>remote远程版本分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#  git remote -v</span><br></pre></td></tr></table></figure>
-
-<h3 id="push推送"><a href="#push推送" class="headerlink" title="push推送"></a>push推送</h3><p>push推送到远程仓库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># git push</span><br><span class="line"># git push origin master</span><br></pre></td></tr></table></figure>
-
-<h3 id="checkout切换分支"><a href="#checkout切换分支" class="headerlink" title="checkout切换分支"></a>checkout切换分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git checkout -b test</span><br></pre></td></tr></table></figure>
-
-<h3 id="merge合并"><a href="#merge合并" class="headerlink" title="merge合并"></a>merge合并</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git merge test</span><br></pre></td></tr></table></figure>
-
-<h3 id="test分支代码合并到master主分支上"><a href="#test分支代码合并到master主分支上" class="headerlink" title="test分支代码合并到master主分支上"></a>test分支代码合并到master主分支上</h3><p>1、checkout切换master主分支<br>2、merge合并test分支代码<br>3、将合并代码推送到远程仓库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># git checkout master</span><br><span class="line"># git merge test</span><br><span class="line"># git push origin master</span><br></pre></td></tr></table></figure>
-
-<h3 id="branch-D删除分支"><a href="#branch-D删除分支" class="headerlink" title="branch -D删除分支"></a>branch -D删除分支</h3><p>1、删除本地分支<br>2、将空推送远程仓库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># git branch -D test</span><br><span class="line"># git branch -a</span><br><span class="line"># git push origin :test</span><br></pre></td></tr></table></figure>
-
-<h3 id="reset回退上一个版本"><a href="#reset回退上一个版本" class="headerlink" title="reset回退上一个版本"></a>reset回退上一个版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># git reset --hard head^</span><br><span class="line"># git log</span><br></pre></td></tr></table></figure>
-
-<h3 id="log、reflog查看日志"><a href="#log、reflog查看日志" class="headerlink" title="log、reflog查看日志"></a>log、reflog查看日志</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># git log</span><br><span class="line"># git reflog</span><br></pre></td></tr></table></figure>
-
-<h3 id="reset回退指定版本"><a href="#reset回退指定版本" class="headerlink" title="reset回退指定版本"></a>reset回退指定版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git reset --hard HEAD@&#123;1&#125;</span><br></pre></td></tr></table></figure>
-
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -1233,7 +1218,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-count">62</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1246,7 +1231,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -1259,7 +1244,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
