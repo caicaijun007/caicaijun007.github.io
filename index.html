@@ -214,6 +214,178 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/21/wxClipboard/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="菜菜君">
+      <meta itemprop="description" content="Learn once, write anywhere">
+      <meta itemprop="image" content="/images/caicaijun.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜菜君">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/01/21/wxClipboard/" class="post-title-link" itemprop="url">关于微信Clipboard复制API的使用</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-21 21:48:22 / 修改时间：09:55:09" itemprop="dateCreated datePublished" datetime="2020-01-21T21:48:22+08:00">2020-01-21</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web前端/" itemprop="url" rel="index"><span itemprop="name">web前端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="微信Clipboard复制API的使用"><a href="#微信Clipboard复制API的使用" class="headerlink" title="微信Clipboard复制API的使用"></a>微信Clipboard复制API的使用</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">copyText(event) &#123;</span><br><span class="line">        <span class="keyword">let</span> text = event.currentTarget.dataset.text</span><br><span class="line">        wx.setClipboardData(&#123;</span><br><span class="line">            data: text,</span><br><span class="line">        	success(res) &#123;</span><br><span class="line">                wx.getClipboardData(&#123;</span><br><span class="line">                    success(res) &#123;</span><br><span class="line">                        wx.showToast(&#123;</span><br><span class="line">                            title: <span class="string">"复制成功"</span>,</span><br><span class="line">                            icon: <span class="string">'none'</span>,</span><br><span class="line">                            mask: <span class="literal">true</span></span><br><span class="line">                        &#125;)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">'phone'</span> <span class="attr">data-text</span>=<span class="string">"&#123;&#123;telPhone&#125;&#125;"</span> <span class="attr">catchtap</span>=<span class="string">"copyText"</span>&gt;</span></span><br><span class="line">    手机号码：<span class="tag">&lt;<span class="name">text</span> <span class="attr">selectable</span>=<span class="string">'true'</span>&gt;</span>&#123;&#123;telPhone&#125;&#125;[复制]<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/20/Promise/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="菜菜君">
+      <meta itemprop="description" content="Learn once, write anywhere">
+      <meta itemprop="image" content="/images/caicaijun.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜菜君">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/01/20/Promise/" class="post-title-link" itemprop="url">关于项目开发中Promise对象的使用</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-20 21:46:12 / 修改时间：11:52:26" itemprop="dateCreated datePublished" datetime="2020-01-20T21:46:12+08:00">2020-01-20</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web前端/" itemprop="url" rel="index"><span itemprop="name">web前端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="项目中Promise对象的使用场景"><a href="#项目中Promise对象的使用场景" class="headerlink" title="项目中Promise对象的使用场景"></a>项目中Promise对象的使用场景</h3>
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/vue-QRCode/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -710,7 +882,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-14 23:15:17" itemprop="dateModified" datetime="2020-01-14T23:15:17+08:00">2020-01-14</time>
+                <time title="修改时间：2020-01-15 10:22:27" itemprop="dateModified" datetime="2020-01-15T10:22:27+08:00">2020-01-15</time>
               </span>
             
           
@@ -741,7 +913,7 @@
       
           <h3 id="Hello-2020"><a href="#Hello-2020" class="headerlink" title="Hello 2020"></a>Hello 2020</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Oyi: like a child</span><br></pre></td></tr></table></figure>
 
-<h3 id="Maker"><a href="#Maker" class="headerlink" title="Maker"></a>Maker</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello！2020</span><br></pre></td></tr></table></figure>
+<h3 id="Mark"><a href="#Mark" class="headerlink" title="Mark"></a>Mark</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello！2020</span><br></pre></td></tr></table></figure>
 
 
         
@@ -971,190 +1143,6 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/19/jquery/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="菜菜君">
-      <meta itemprop="description" content="Learn once, write anywhere">
-      <meta itemprop="image" content="/images/caicaijun.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="菜菜君">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/12/19/jquery/" class="post-title-link" itemprop="url">jQuery项目总结</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-12-19 22:58:30 / 修改时间：23:19:59" itemprop="dateCreated datePublished" datetime="2019-12-19T22:58:30+08:00">2019-12-19</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web前端/" itemprop="url" rel="index"><span itemprop="name">web前端</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="重温jQuery风暴"><a href="#重温jQuery风暴" class="headerlink" title="重温jQuery风暴"></a>重温jQuery风暴</h3><ul>
-<li>免费且开放源代码的JavaScript代码库</li>
-<li>写更少的代码，做更多的事情</li>
-<li>兼容各种主流浏览器</li>
-</ul>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/16/echart/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="菜菜君">
-      <meta itemprop="description" content="Learn once, write anywhere">
-      <meta itemprop="image" content="/images/caicaijun.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="菜菜君">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/12/16/echart/" class="post-title-link" itemprop="url">使用echarts图表之区域缩放</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-12-16 19:40:23 / 修改时间：23:06:40" itemprop="dateCreated datePublished" datetime="2019-12-16T19:40:23+08:00">2019-12-16</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web前端/" itemprop="url" rel="index"><span itemprop="name">web前端</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="原生js项目使用echarts图表总结"><a href="#原生js项目使用echarts图表总结" class="headerlink" title="原生js项目使用echarts图表总结"></a>原生js项目使用echarts图表总结</h3><p>1、引入本地资源（官网下载dist包或者引用CDN地址）</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./lib/echarts/dist/echarts.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> // echarts</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./lib/js/macarons.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> // 主题</span><br></pre></td></tr></table></figure>
-
-<p>2、使用echarts</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"chart"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 图表类型</span></span><br><span class="line"><span class="keyword">var</span> chartType = <span class="string">'line'</span>;</span><br><span class="line"><span class="comment">// 速度单位</span></span><br><span class="line"><span class="keyword">var</span> sType = <span class="string">'M'</span>;</span><br><span class="line"><span class="comment">// 数据</span></span><br><span class="line"><span class="keyword">var</span> tempTimeData = [];</span><br><span class="line"><span class="keyword">var</span> tempData = [];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initChart</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myChart = echarts.init(<span class="built_in">document</span>.getElementById(<span class="string">'chart'</span>), <span class="string">'macarons'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> option = &#123;</span><br><span class="line">    <span class="comment">// title: &#123; text: '速度' &#125;,</span></span><br><span class="line">    tooltip: &#123;</span><br><span class="line">    	trigger: <span class="string">'item'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    xAxis: [</span><br><span class="line">        &#123;</span><br><span class="line">            type: <span class="string">'category'</span>,</span><br><span class="line">            name: <span class="string">'时间(时分秒)'</span>,</span><br><span class="line">            data: tempTimeData</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    yAxis: [</span><br><span class="line">        &#123;</span><br><span class="line">            type: <span class="string">'value'</span>,</span><br><span class="line">            name: <span class="string">'路程:'</span> + <span class="string">'['</span> + sType + <span class="string">']'</span>,</span><br><span class="line">            axisLabel: &#123;</span><br><span class="line">                formatter: sType === <span class="string">'M'</span> ? <span class="string">'&#123;value&#125;.0'</span> : <span class="string">'&#123;value&#125;'</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    dataZoom: [</span><br><span class="line">    &#123;</span><br><span class="line">        type: <span class="string">'slider'</span>,</span><br><span class="line">        xAxisIndex: <span class="number">0</span>,</span><br><span class="line">        start: <span class="number">20</span>,</span><br><span class="line">        end: <span class="number">60</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        type: <span class="string">'inside'</span>,</span><br><span class="line">        xAxisIndex: <span class="number">0</span>,</span><br><span class="line">        start: <span class="number">20</span>,</span><br><span class="line">        end: <span class="number">60</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        type: <span class="string">'slider'</span>,</span><br><span class="line">        yAxisIndex: <span class="number">0</span>,</span><br><span class="line">        start: <span class="number">10</span>,</span><br><span class="line">        end: <span class="number">90</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        type: <span class="string">'inside'</span>,</span><br><span class="line">        yAxisIndex: <span class="number">0</span>,</span><br><span class="line">        start: <span class="number">10</span>,</span><br><span class="line">        end: <span class="number">90</span></span><br><span class="line">    &#125;</span><br><span class="line">    ],</span><br><span class="line">    series: [</span><br><span class="line">        &#123;</span><br><span class="line">            name: <span class="string">"速度"</span>,</span><br><span class="line">            type: chartType,</span><br><span class="line">            data: tempData</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line"> &#125;</span><br><span class="line"> myChart.setOption(option);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// init</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  initChart()</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-<p>###参考文档</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># https://www.echartsjs.com/zh/api.html#echarts</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -1207,7 +1195,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">66</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
